@@ -1,0 +1,24 @@
+{
+  "SIDEBAR": {
+    "DASHBOARD": "Instrumententafel",
+    "CHANNEL_MANAGER": "Kanalmanager",
+    "BOOKING_MANAGER": "Buchungsmanager",
+    "INVENTORY": "Inventar",
+    "DATA_MANAGEMENT": "Datenverwaltung",
+    "CATEGORIES": "Kategorien",
+    "CUSTOMER": "Kunde"
+  },
+  "PLACEHOLDER": {
+    "SEARCH": "Suchen"
+  },
+  "COMMON": {
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv"
+  },
+  "BUTTON": {
+    "FILTER": "Filter",
+    "PREVIOUS": "Zurück",
+    "NEXT": "Weiter",
+    "ADD_CHANNEL": "Kanal hinzufügen"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "CHANNEL_MANAGER": "Channel Manager",
+    "BOOKING_MANAGER": "Booking Manager",
+    "INVENTORY": "Inventory",
+    "DATA_MANAGEMENT": "Data Management",
+    "CATEGORIES": "Categories",
+    "CUSTOMER": "Customer"
+  },
+  "PLACEHOLDER": {
+    "SEARCH": " Search"
+  },
+  "COMMON": {
+    "ACTIVE": "Active",
+    "INACTIVE": "InActive"
+  },
+  "BUTTON": {
+    "FILTER": "Filter",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next",
+    "ADD_CHANNEL": "Add Channel"
+  }
+}

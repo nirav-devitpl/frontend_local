@@ -1,0 +1,24 @@
+{
+  "SIDEBAR": {
+    "DASHBOARD": "Cruscotto",
+    "CHANNEL_MANAGER": "Gestore Canali",
+    "BOOKING_MANAGER": "Gestore Prenotazioni",
+    "INVENTORY": "Inventario",
+    "DATA_MANAGEMENT": "Gestione Dati",
+    "CATEGORIES": "Categorie",
+    "CUSTOMER": "Cliente"
+  },
+  "PLACEHOLDER": {
+    "SEARCH": "Cerca"
+  },
+  "COMMON": {
+    "ACTIVE": "Attivo",
+    "INACTIVE": "Inattivo"
+  },
+  "BUTTON": {
+    "FILTER": "Filtro",
+    "PREVIOUS": "Precedente",
+    "NEXT": "Successivo",
+    "ADD_CHANNEL": "Aggiungi canale"
+  }
+}
