@@ -14,21 +14,25 @@ function ChannelAddEditPage() {
     const isLoading = false;
   return (
     <>
-      <div className="flex justify-between px-4 py-2 items-center h-[52px]">
-        <h1 className="font-semibold text-lg">{id ? 'Edit Channel' : 'Add Channel'}</h1>
-        <div className="flex items-center">
-          <Button className='ml-2 flex items-center' variant="default" onClick={() => navigate('/channel-manager') } >Back</Button>
+      <div className="flex p-6 pb-6 gap-6 bg-white border-[#e2e8f0]">
+        <div className="flex justify-between p-6 bg-white shadow-[0_0_11.2px_0_rgba(0,0,0,0.1)]">
+          <p className="w-[914px] h-6 font-poppins font-medium text-lg leading-6 tracking-normal">{id ? 'Edit Channel' : 'Add Channel'}</p>
+          <div className="flex items-center">
+            <Button className="w-40 h-9 rounded-md p-2.5 gap-2 bg-[#e64560]" variant="default" onClick={() => navigate('/channel-manager') } >Back</Button>
+          </div>      
         </div>
       </div>
-      <Card>
-        <CardContent className="p-4">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <ChannelForm />
-          )}
-        </CardContent>
-      </Card>
+      <div>
+        <Card className="flex">
+          <CardContent className="p-4">
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <ChannelForm />
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 }

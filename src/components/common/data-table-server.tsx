@@ -61,9 +61,27 @@ function DataTableServer<TData, TValue>({
     manualSorting: true,
     manualFiltering: true,
     pageCount: Math.ceil(totalCount / pagination.pageSize),
-    onSortingChange: setSorting,
-    onPaginationChange: setPagination,
-    onColumnFiltersChange: setColumnFilters,
+    onSortingChange: (updaterOrValue) => {
+      if (typeof updaterOrValue === 'function') {
+        setSorting(updaterOrValue([]));
+      } else {
+        setSorting(updaterOrValue);
+      }
+    },
+    onPaginationChange: (updaterOrValue) => {
+      if (typeof updaterOrValue === 'function') {
+        setPagination(updaterOrValue(pagination));
+      } else {
+        setPagination(updaterOrValue);
+      }
+    },
+    onColumnFiltersChange: (updaterOrValue) => {
+      if (typeof updaterOrValue === 'function') {
+        setColumnFilters(updaterOrValue([]));
+      } else {
+        setColumnFilters(updaterOrValue);
+      }
+    },
     state: {
       sorting: sorting.length ? sorting : [{ id: 'updatedOn', desc: true }],
       pagination,
@@ -78,59 +96,68 @@ function DataTableServer<TData, TValue>({
   
   return (
     <>
-      <div className="table-border-radius bg-white">
+      <div className="table-border-radius bg-white rounded-lg overflow-hidden border">
         <Table>
-          <TableHeader className="rounded-t-lg font-semibold text-secondary-foreground">
+          <TableHeader className="rounded-t-lg font-semibold text-secondary-foreground h-16">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-          {headerGroup.headers.map((header) => {
-            return (
-              <TableHead key={header.id}>
-            {header.isPlaceholder
-            ? null
-            : flexRender(
-            header.column.columnDef.header,
-            header.getContext()
-              )}
-              </TableHead>
-            );
-          })}
-              </TableRow>
-            ))}
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-              </TableRow>
+                <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header, index) => {
+                  const isFirstColumn = index === 0;
+                  return (
+                    <TableHead
+                    key={header.id}
+                    className={cn(
+                      'pt-6',
+                      isFirstColumn && 'pl-10'
+                    )}
+                    >
+                    {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                      )}
+                    </TableHead>
+                  );
+                })}
+                </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+            <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                  className="w-[1317px] h-[76px] pt-[16px] gap-[24px] border-b border-gray-200"
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell className="py-2 px-3" key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && 'selected'}
+                className="w-[1317px] h-[76px] pt-[16px] gap-[24px] border-b border-gray-200"
+              >
+                {row.getVisibleCells().map((cell, index) => {
+                const isFirstColumn = index === 0;
+                return (
+                  <TableCell
+                  className={cn('py-2 px-3', isFirstColumn && 'pl-10')}
+                  key={cell.id}
+                  >
+                  {flexRender(
+                    cell.column.columnDef.cell,
+                    cell.getContext()
+                  )}
+                  </TableCell>
+                );
+                })}
+              </TableRow>
               ))
             ) : (
               <TableRow className="w-[1317px] h-[76px] pt-[16px] gap-[24px] border-b border-gray-200">
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center"
+              >
+                No results.
+              </TableCell>
               </TableRow>
             )}
-          </TableBody>
+            </TableBody>
         </Table>
       </div>
       <div className="flex items-center justify-between space-x-2 py-4 text-sm">
@@ -175,23 +202,42 @@ function DataTableServer<TData, TValue>({
           </p>
         </div>
 
-        <div className="space-x-2">
-          <Button
-            variant="accent"
-            size="sm"
+        <div className="flex items-center space-x-2">
+          {/* Pagination */}
+          <button
+            className={cn(
+              'px-2 py-1 border rounded',
+              !table.getCanPreviousPage() && 'opacity-50 cursor-not-allowed'
+            )}
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
-          </Button>
-          <Button
-            variant="accent"
-            size="sm"
+            {'<'}
+          </button>
+          {Array.from({ length: Math.max(table.getPageCount(), 1) }, (_, index) => (
+            <button
+              key={index}
+              className={cn(
+              'font-poppins font-normal text-sm leading-5 tracking-normal relative flex items-center justify-center',
+              pagination.pageIndex === index
+                ? 'w-6 h-6 rounded-full bg-[#e64560] text-white'
+                : 'text-black'
+              )}
+              onClick={() => setPagination({ ...pagination, pageIndex: index })}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className={cn(
+              'px-2 py-1 border rounded',
+              !table.getCanNextPage() && 'opacity-50 cursor-not-allowed'
+            )}
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
-          </Button>
+            {'>'}
+          </button>
         </div>
       </div>
     </>
