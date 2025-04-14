@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   ColumnDef,
   flexRender,
@@ -19,8 +18,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '../custom/button';
-import { Input } from '../ui/input';
 import {
   Select,
   SelectContent,
@@ -34,24 +31,24 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   sorting: SortingState;
-  pagination: { pageIndex: number; pageSize: number };
+  pagination: { page: number; limit: number };
   columnFilters: ColumnFiltersState
   setSorting: (sorting: SortingState) => void;
-  setPagination: (pagination: { pageIndex: number; pageSize: number }) => void;
+  setPagination: (pagination: { page: number; limit: number }) => void;
   setColumnFilters: (columnFilters: ColumnFiltersState) => void;
-  totalCount: number;
+  total: number;
 }
 
 function DataTableServer<TData, TValue>({
   columns,
   data,
+  sorting,
+  pagination,
+  columnFilters,
   setSorting,
   setPagination,
   setColumnFilters,
-  totalCount,
-  sorting,
-  columnFilters,
-  pagination
+  total,
 }: DataTableProps<TData, TValue>) {
   
   const table = useReactTable({
@@ -60,28 +57,31 @@ function DataTableServer<TData, TValue>({
     manualPagination: true,
     manualSorting: true,
     manualFiltering: true,
-    pageCount: Math.ceil(totalCount / pagination.pageSize),
-    onSortingChange: (updaterOrValue) => {
-      if (typeof updaterOrValue === 'function') {
-        setSorting(updaterOrValue([]));
-      } else {
-        setSorting(updaterOrValue);
-      }
-    },
-    onPaginationChange: (updaterOrValue) => {
-      if (typeof updaterOrValue === 'function') {
-        setPagination(updaterOrValue(pagination));
-      } else {
-        setPagination(updaterOrValue);
-      }
-    },
-    onColumnFiltersChange: (updaterOrValue) => {
-      if (typeof updaterOrValue === 'function') {
-        setColumnFilters(updaterOrValue([]));
-      } else {
-        setColumnFilters(updaterOrValue);
-      }
-    },
+    pageCount: Math.ceil(total / pagination.limit),
+    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
+    onColumnFiltersChange: setColumnFilters,
+    // onSortingChange: (updaterOrValue) => {
+    //   if (typeof updaterOrValue === 'function') {
+    //     setSorting(updaterOrValue([]));
+    //   } else {
+    //     setSorting(updaterOrValue);
+    //   }
+    // },
+    // onPaginationChange: (updaterOrValue) => {
+    //   if (typeof updaterOrValue === 'function') {
+    //     setPagination(updaterOrValue(pagination));
+    //   } else {
+    //     setPagination(updaterOrValue);
+    //   }
+    // },
+    // onColumnFiltersChange: (updaterOrValue) => {
+    //   if (typeof updaterOrValue === 'function') {
+    //     setColumnFilters(updaterOrValue([]));
+    //   } else {
+    //     setColumnFilters(updaterOrValue);
+    //   }
+    // },
     state: {
       sorting: sorting.length ? sorting : [{ id: 'updatedOn', desc: true }],
       pagination,
@@ -91,7 +91,7 @@ function DataTableServer<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    rowCount: totalCount,
+    rowCount: total,
   });
   
   return (
@@ -160,15 +160,15 @@ function DataTableServer<TData, TValue>({
             </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between space-x-2 py-4 text-sm">
+      <div className="flex items-center justify-between space-x-2 py-6 text-sm">
         <div className="space-x-2 flex items-center justify-between">
           <div className="flex items-center">
             <p className="flex-shrink-0">Records:&nbsp;&nbsp;</p>
             <Select
               onValueChange={(value) =>
-                setPagination({ ...pagination, pageSize: Number(value), pageIndex: 0 })
+                setPagination({ ...pagination, limit: Number(value), page: 0 })
               }
-              value={pagination.pageSize.toString()}
+              value={pagination.limit.toString()}
             >
               <SelectTrigger className={cn('h-8')}>
                 <SelectValue placeholder="Records" />
@@ -190,12 +190,12 @@ function DataTableServer<TData, TValue>({
             Showing{' '}
             {Math.min(
               table.getRowCount(),
-              pagination.pageIndex * pagination.pageSize + 1
+              pagination.page * pagination.limit + 1
             )}
             -
             {Math.min(
               table.getRowCount(),
-              (pagination.pageIndex + 1) * pagination.pageSize
+              (pagination.page + 1) * pagination.limit
             )}{' '}
             of Total&nbsp;
             {table.getRowCount()} Records
@@ -203,41 +203,44 @@ function DataTableServer<TData, TValue>({
         </div>
 
         <div className="flex items-center space-x-2">
-          {/* Pagination */}
-          <button
+            <button
             className={cn(
-              'px-2 py-1 border rounded',
-              !table.getCanPreviousPage() && 'opacity-50 cursor-not-allowed'
+              'px-2 py-1 rounded',
+              !table.getCanPreviousPage() ? 'opacity-50' : 'cursor-pointer'
             )}
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-          >
-            {'<'}
-          </button>
+            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.3 17.3008L8.70005 12.7008C8.60005 12.6008 8.52938 12.4924 8.48805 12.3758C8.44672 12.2591 8.42572 12.1341 8.42505 12.0008C8.42505 11.8674 8.44605 11.7424 8.48805 11.6258C8.53005 11.5091 8.60072 11.4008 8.70005 11.3008L13.3 6.70078C13.4834 6.51745 13.7167 6.42578 14 6.42578C14.2834 6.42578 14.5167 6.51745 14.7 6.70078C14.8834 6.88411 14.975 7.11745 14.975 7.40078C14.975 7.68411 14.8834 7.91745 14.7 8.10078L10.8 12.0008L14.7 15.9008C14.8834 16.0841 14.975 16.3174 14.975 16.6008C14.975 16.8841 14.8834 17.1174 14.7 17.3008C14.5167 17.4841 14.2834 17.5758 14 17.5758C13.7167 17.5758 13.4834 17.4841 13.3 17.3008Z" fill="#CBD5E1"/>
+            </svg>
+            </button>
           {Array.from({ length: Math.max(table.getPageCount(), 1) }, (_, index) => (
             <button
               key={index}
               className={cn(
-              'font-poppins font-normal text-sm leading-5 tracking-normal relative flex items-center justify-center',
-              pagination.pageIndex === index
+              'font-poppins font-normal text-sm leading-5 tracking-normal relative flex items-center justify-center px-2',
+              pagination.page === index
                 ? 'w-6 h-6 rounded-full bg-[#e64560] text-white'
-                : 'text-black'
+                : 'text-[#64748b] cursor-pointer'
               )}
-              onClick={() => setPagination({ ...pagination, pageIndex: index })}
+              onClick={() => setPagination({ ...pagination, page: index })}
             >
               {index + 1}
             </button>
           ))}
-          <button
+            <button
             className={cn(
-              'px-2 py-1 border rounded',
-              !table.getCanNextPage() && 'opacity-50 cursor-not-allowed'
+              'px-2 py-1 rounded',
+              table.getCanNextPage() ? 'cursor-pointer' : 'opacity-50'
             )}
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-          >
-            {'>'}
-          </button>
+            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.70005 17.3008C8.51672 17.1174 8.42505 16.8841 8.42505 16.6008C8.42505 16.3174 8.51672 16.0841 8.70005 15.9008L12.6 12.0008L8.70005 8.10078C8.51672 7.91745 8.42505 7.68411 8.42505 7.40078C8.42505 7.11745 8.51672 6.88411 8.70005 6.70078C8.88338 6.51745 9.11671 6.42578 9.40005 6.42578C9.68338 6.42578 9.91672 6.51745 10.1 6.70078L14.7 11.3008C14.8 11.4008 14.871 11.5091 14.913 11.6258C14.955 11.7424 14.9757 11.8674 14.975 12.0008C14.975 12.1341 14.954 12.2591 14.912 12.3758C14.87 12.4924 14.7994 12.6008 14.7 12.7008L10.1 17.3008C9.91672 17.4841 9.68338 17.5758 9.40005 17.5758C9.11671 17.5758 8.88338 17.4841 8.70005 17.3008Z" fill="#64748B"/>
+            </svg>
+            </button>
         </div>
       </div>
     </>

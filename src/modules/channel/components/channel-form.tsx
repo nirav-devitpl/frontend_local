@@ -24,6 +24,7 @@ import { channelSchema } from '@/validation-schema/channel';
 import { useNavigate, useParams } from 'react-router';
 import { SOURCE_LIST, TYPE_LIST } from '../utils/dropdown-data';
 import { ChannelFormData } from '@/models/channel';
+import { randomPassword } from 'secure-random-password';
  
 /**
  * Function to render the channel form
@@ -220,13 +221,28 @@ function ChannelForm() {
                 Username <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
-                <Input
-                  className={cn('h-9', {
-                    'border-red-500 focus:outline-red-500': fieldState.invalid,
-                  })}
-                  placeholder="Username"
-                  {...field}
-                />
+                <div className="flex items-center">
+                  <Input
+                    className={cn('h-9', {
+                      'border-red-500 focus:outline-red-500': fieldState.invalid,
+                    })}
+                    placeholder="Username"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    className="p-1 text-gray-500 hover:text-gray-700"
+                    onClick={() => {
+                      navigator.clipboard.writeText(field.value || '');
+                      showToast('Username copied to clipboard', 'success'); // Optional toast notification
+                    }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F81E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy-icon lucide-copy">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                  </button>
+                </div>
               </FormControl>
               <FormMessage className="text-sm">
                 {fieldState.error?.message}
@@ -248,14 +264,48 @@ function ChannelForm() {
                 Password <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
-                <Input
-                 type='password'
-                  className={cn('h-9', {
-                    'border-red-500 focus:outline-red-500': fieldState.invalid,
-                  })}
-                  placeholder="Password"
-                  {...field}
-                />
+                <div className="flex items-center">
+                  <Input
+                  type='password'
+                    className={cn('h-9', {
+                      'border-red-500 focus:outline-red-500': fieldState.invalid,
+                    })}
+                    placeholder="Password"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    className="p-1 text-gray-500 hover:text-gray-700"
+                    onClick={() => {
+                      const newPassword = randomPassword({
+                        length: 12,
+                        numbers: true,
+                        symbols: true,
+                        uppercase: true,
+                        lowercase: true,
+                      });
+                      field.onChange(newPassword); // Update the password field
+                      showToast('Password generated successfully', 'success'); // Optional toast notification
+                    }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F81E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-key-round-icon lucide-key-round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/>
+                      <circle cx="16.5" cy="7.5" r=".5" fill="#F81E1E"/>
+                    </svg>
+                  </button>                  
+                  <button
+                    type="button"
+                    className="p-1 text-gray-500 hover:text-gray-700"
+                    onClick={() => {
+                      navigator.clipboard.writeText(field.value || '');
+                      showToast('Password copied to clipboard', 'success'); // Optional toast notification
+                    }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F81E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy-icon lucide-copy">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                  </button>
+                </div>
               </FormControl>
               <FormMessage className="text-sm">
                 {fieldState.error?.message}
@@ -277,21 +327,35 @@ function ChannelForm() {
                 Client code <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
-                <Input
-                  className={cn('h-9', {
-                    'border-red-500 focus:outline-red-500': fieldState.invalid,
-                  })}
-                  placeholder="Client code"
-                  {...field}
-                />
+                <div className="flex items-center">
+                  <Input
+                    className={cn('h-9', {
+                      'border-red-500 focus:outline-red-500': fieldState.invalid,
+                    })}
+                    placeholder="Client code"
+                    {...field}
+                  />
+                  <button
+                    type="button"
+                    className="p-1 text-gray-500 hover:text-gray-700"
+                    onClick={() => {
+                      navigator.clipboard.writeText(field.value || '');
+                      showToast('Password copied to clipboard', 'success'); // Optional toast notification
+                    }}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F81E1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy-icon lucide-copy">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                  </button>
+                </div>
               </FormControl>
               <FormMessage className="text-sm">
                 {fieldState.error?.message}
               </FormMessage>
             </FormItem>
           )}
-        />
- 
+        /> 
         <Button type="submit" variant="destructive" className="mt-4 w-1/2">
           Save
         </Button>

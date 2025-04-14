@@ -2,19 +2,18 @@ import Loader from '@/components/common/loader';
 import { useEffect, useState } from 'react';
 import useColumns from '../utils/use-columns';
 import { Card, CardContent } from '@/components/ui/card';
-import DataTable from '@/components/common/data-table';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import DeleteModal from '@/components/common/delete-modal';
+import DeactivateModal from '@/components/common/deactivate-modal';
 import showToast from '@/components/common/toast';
 import { useAppSelector } from '@/hooks/use-rtk-hooks';
 import { RootState } from '@/store';
 import {
-  useDeleteChannelMutation,
+  useDeactivateChannelMutation,
   useGetChannelsQuery,
 } from '@/services/channel';
 import DataTableServer from '@/components/common/data-table-server';
- 
 import { ColumnFiltersState, SortingState } from '@tanstack/react-table';
+
  
 /**
  * @memberof channel
@@ -29,19 +28,19 @@ function ActiveChannelPage() {
   ]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
+    page: 0,
+    limit: 10,
   });
-  const [totalCount, setTotalCount] = useState(0);
+  const [total, setTotal] = useState(0);
   const [id, setId] = useState<string | null>(null);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openDeactivateModal, setOpenDeactivateModal] = useState(false);
  
   const { data, isLoading, refetch } = useGetChannelsQuery(
     {
       key: 'CHANNELS',
       status: true,
-      page: pagination.pageIndex + 1,
-      limit: pagination.pageSize,
+      page: pagination.page + 1,
+      limit: pagination.limit,
       sortBy: sorting[0]?.id || 'created_at',
       sortOrder: sorting[0]?.desc ? 'desc' : 'asc',
       // search: columnFilters?.length > 0 ? columnFilters[0]?.value : '',
@@ -49,7 +48,7 @@ function ActiveChannelPage() {
     {
       selectFromResult: ({ data, ...rest }) => {
         return {
-          data: data?.result?.data,
+          data: data?.result,
           ...rest,
         };
       },
@@ -58,28 +57,29 @@ function ActiveChannelPage() {
  
   const { channelTab } = useAppSelector((state: RootState) => state.utility.us);
  
-  const [deleteChannel] = useDeleteChannelMutation();
+  const [deactivateChannel] = useDeactivateChannelMutation();
  
-  const handleOpenDeleteModal = (id: string) => {
-    setOpenDeleteModal(true);
+  const handleOpenDeactivateModal = (id: string) => {
+    setOpenDeactivateModal(true);
     setId(id);
   };
-  const handleDelete = async (id: string) => {
-    await deleteChannel(id)
+  const handleDeactivate = async (id: string) => {
+    await deactivateChannel(id)
       .then((res: any) => {
         showToast(res?.data?.message, 'success');
-        setOpenDeleteModal(false);
+        setOpenDeactivateModal(false);
       })
       .catch((error: any) => {
         showToast(error?.data?.message, 'error');
       });
   };
  
-  const columns = useColumns(handleOpenDeleteModal);
+  const columns = useColumns(handleOpenDeactivateModal, true);
  
   useEffect(() => {
-    refetch();
+    setTotal(data?.total?? 0);
   }, [data]);
+
  
   useEffect(() => {
     refetch();
@@ -87,33 +87,30 @@ function ActiveChannelPage() {
   return (
     <>
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="px-4">
           {isLoading ? (
             <Loader />
           ) : (
-            <>
-              {/* <DataTable columns={columns} data={data || []} /> */}
               <DataTableServer
                 columns={columns}
-                data={data || []}
+                data={data?.data || []}
                 setColumnFilters={setColumnFilters}
                 setPagination={setPagination}
                 setSorting={setSorting}
                 sorting={sorting}
                 columnFilters={columnFilters}
                 pagination={pagination}
-                totalCount={totalCount}
+                total={total}
               />
-            </>
           )}
         </CardContent>
       </Card>
  
-      <Dialog open={openDeleteModal} onOpenChange={setOpenDeleteModal}>
+      <Dialog open={openDeactivateModal} onOpenChange={setOpenDeactivateModal}>
         <DialogContent className="p-4 w-[400px]">
-          <DeleteModal
-            message={'Are you sure you want to delete this channel?'}
-            handleDelete={() => handleDelete(id ?? '')}
+          <DeactivateModal
+            message={'Are you sure you want to deactivate this channel?'}
+            handleDeactivate={() => handleDeactivate(id ?? '')}
           />
         </DialogContent>
       </Dialog>

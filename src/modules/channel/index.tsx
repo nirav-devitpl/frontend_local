@@ -8,9 +8,6 @@ import { setUtilityState } from '@/features/utility-slice';
 
 import { CHANNEL_TABS } from '@/constants/channel-tab';
 import { Button } from '@/components/custom/button';
-import { Plus } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { IconAdjustmentsHorizontal } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
@@ -32,7 +29,7 @@ function ChannelPage() {
   };
 
   return (
-    <Card className="p-4">
+    <Card className="px-4">
       <div className="flex justify-between px-4 py-2 items-center h-[52px]">
         <div className="flex items-center w-[400px] h-[36px] gap-2 rounded-md border px-5 border-gray-200 bg-white">
           <svg

@@ -42,6 +42,20 @@ const channelApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['CHANNEL'],
     }),
+    deactivateChannel: builder.mutation({
+      query: (id) => ({
+        url: `channels/deactivate/${id}`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['CHANNEL'],
+    }),
+    activateChannel: builder.mutation({
+      query: (id) => ({
+        url: `channels/activate/${id}`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['CHANNEL'],
+    }),
   }),
 });
  
@@ -51,4 +65,6 @@ export const {
   useCreateChannelMutation,
   useUpdateChannelMutation,
   useDeleteChannelMutation,
+  useDeactivateChannelMutation,
+  useActivateChannelMutation,
 } = channelApi;
