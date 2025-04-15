@@ -9,7 +9,8 @@
     "CUSTOMER": "Kunde"
   },
   "PLACEHOLDER": {
-    "SEARCH": "Suchen"
+    "SEARCH": "Suche",
+    "SELECT_FILTER": "Filter auswählen"
   },
   "COMMON": {
     "ACTIVE": "Aktiv",
@@ -19,6 +20,14 @@
     "FILTER": "Filter",
     "PREVIOUS": "Zurück",
     "NEXT": "Weiter",
-    "ADD_CHANNEL": "Kanal hinzufügen"
+    "ADD_CHANNEL": "Kanal hinzufügen",
+    "CLEAR_SELECTION": "Auswahl löschen"
+  },
+  "LABEL": {
+    "CHANNEL_TYPE": "Kanaltyp"
+  },
+  "FILTER": {
+    "INBOUND": "Eingehende",
+    "OUTBOUND": "Ausgehende"
   }
 }
