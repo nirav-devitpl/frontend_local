@@ -21,13 +21,62 @@
     "PREVIOUS": "Previous",
     "NEXT": "Next",
     "ADD_CHANNEL": "Add Channel",
-    "CLEAR_SELECTION": "Clear Selection"
+    "EDIT_CHANNEL": "Edit Channel",
+    "SAVE": "Save",
+    "CREATE": "Create",
+    "CLEAR_SELECTION": "Clear Selection",
+    "CONFIGURATION": "Configuration"
   },
   "LABEL": {
     "CHANNEL_TYPE": "Channel Type"
   },
   "FILTER": {
     "INBOUND": "Inbound",
-    "OUTBOUND": "Outbound"
-  }
+    "OUTBOUND": "Outbound",
+    "PMS_VALUE": "ASA",
+    "VALUE_Aplinebits": "Alpinebits",
+    "VALUE_OTHER": "Other"
+  },
+  "FORM": {
+    "NAME": "Name",
+    "CODE": "Code",
+    "TYPE": "Type",
+    "SOURCE": "Source",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "CLIENT_CODE": "Client Code",
+    "LINK": "Link",
+    "SUCCESS_MESSAGE": "Channel saved successfully"
+  },
+  "MODAL": {
+    "PASSWORD_CHANGE_CONFIRMATION": "Are you sure you want to change the password?",
+    "DEACTIVATE_CONFIRMATION": "Are you sure you want to deactivate this channel?",
+    "ACTIVATE_CONFIRMATION": "Are you sure you want to activate this channel?",
+    "DELETE_CONFIRMATION": "Are you sure you want to activate this channel?",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "CONFIRM_DEACTIVATE": "Yes, Deactivate",
+    "CONFIRM_ACTIVATE": "Yes, Activate",
+    "CONFIRM_DELETE": "Yes, Delete",
+    "CONFIRM_PASSWORD_CHANGE": "Yes, Change Password"
+  },
+  "TABLE": {
+    "NO_RESULTS": "No results found.",
+    "RECORDS": "Records",
+    "SHOWING": "Showing {{start}}-{{end}} of Total {{total}} Records"
+  },   
+  "VALIDATION": {
+    "NAME_REQUIRED": "Name is required.",
+    "CODE_REQUIRED": "Code is required.",
+    "INVALID_CODE": "Invalid Code.",
+    "TYPE_REQUIRED": "Type is required.",
+    "SOURCE_REQUIRED": "Source is required.",
+    "USERNAME_REQUIRED": "Username is required.",
+    "PASSWORD_REQUIRED": "Password is required.",
+    "PASSWORD_MIN_LENGTH": "Password must be at least 7 characters long.",
+    "PASSWORD_MAX_LENGTH": "Password must not exceed 12 characters.",
+    "PASSWORD_COMPLEXITY": "Your password must have at least 1 uppercase, lowercase, digit, and special character.",
+    "CLIENT_CODE_REQUIRED": "Client Code is required.",
+    "INVALID_CLIENT_CODE": "Invalid Client Code."
+  }  
 }

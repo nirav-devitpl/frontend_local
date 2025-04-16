@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconChevronsLeft, IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Layout, LayoutHeader } from "./layout";
 import { Button } from "../custom/button";
 import Nav from "./nav";
@@ -8,6 +8,7 @@ import useSidelinks from "@/hooks/use-sidelinks";
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { LanguageChange } from "./language-change"; // Import the LanguageChange component
 
 /**
  * @interface SidebarProps
@@ -23,7 +24,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * @memberof common
  * @name Sidebar
- * @description The `Sidebar` component renders a responsive, collapsible navigation sidebar. It includes a logo, navigation links, and a toggle button for expanding or collapsing the sidebar.
+ * @description The `Sidebar` component renders a responsive, collapsible navigation sidebar. It includes a logo, navigation links, a toggle button for expanding or collapsing the sidebar, and a language switcher.
  * @interface SidebarProps props - The properties to be passed to the component.
  * @property {boolean} isCollapsed - Indicates whether the sidebar is in a collapsed state (showing icons only) or expanded (showing full navigation links).
  * @property {React.Dispatch<React.SetStateAction<boolean>>} setIsCollapsed - Function to update the collapsed state of the sidebar.
@@ -127,6 +128,11 @@ export default function Sidebar({
             size={14}
           />
         </Button>
+
+        {/* Language Switcher at the bottom */}
+        <div className="py-3 items-center flex justify-center">
+          <LanguageChange />
+        </div>
       </Layout>
     </aside>
   );

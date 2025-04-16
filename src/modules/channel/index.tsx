@@ -21,14 +21,15 @@ function ChannelPage() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const [filterValue, setFilterValue] = useState<string | undefined>(undefined);
+  const [filterValue, setFilterValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const onTabChange = (value: string) => {
     dispatch(setUtilityState({ channelTab: value }));
   };
 
   const handleFilterChange = (value: string) => {
-    setFilterValue(value === 'clear' ? undefined : value);
+    setFilterValue(value === 'clear' ? '' : value);
   };
 
   const renderFilterPopover = () => (
@@ -68,8 +69,8 @@ function ChannelPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="clear">{t('BUTTON.CLEAR_SELECTION')}</SelectItem>
-              <SelectItem value="inbound">{t('FILTER.INBOUND')}</SelectItem>
-              <SelectItem value="outbound">{t('FILTER.OUTBOUND')}</SelectItem>
+              <SelectItem value="Inbound">{t('FILTER.INBOUND')}</SelectItem>
+              <SelectItem value="Outbound">{t('FILTER.OUTBOUND')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -97,6 +98,8 @@ function ChannelPage() {
             type="text"
             className="flex-1 h-full bg-transparent outline-none"
             placeholder={t('PLACEHOLDER.SEARCH')}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)} 
           />
         </div>
         {renderFilterPopover()}
@@ -108,7 +111,7 @@ function ChannelPage() {
             <TabsTrigger value={CHANNEL_TABS.INACTIVE}>{t('COMMON.INACTIVE')}</TabsTrigger>
           </TabsList>
           <Button
-            className="ml-2 flex items-center w-[160px] h-[40px] gap-2 rounded-[4px] bg-[#E64560] text-white"
+            className="ml-2 flex items-center w-[160px] h-[40px] gap-2 rounded-[4px] bg-[#E64560] text-white cursor-pointer"
             variant="filter"
             onClick={() => navigate('/channel-manager/add')}
           >
@@ -132,12 +135,12 @@ function ChannelPage() {
         </div>
         <TabsContent value={CHANNEL_TABS.ACTIVE}>
           <Suspense fallback={<Loader />}>
-            <ActiveTab />
+            <ActiveTab filterValue={filterValue} searchValue={searchValue} />
           </Suspense>
         </TabsContent>
         <TabsContent value={CHANNEL_TABS.INACTIVE}>
           <Suspense fallback={<Loader />}>
-            <InactiveTab />
+            <InactiveTab filterValue={filterValue} searchValue={searchValue} />
           </Suspense>
         </TabsContent>
       </Tabs>

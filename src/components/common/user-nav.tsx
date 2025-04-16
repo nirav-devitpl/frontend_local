@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/custom/button';
 import {
   DropdownMenu,
@@ -47,15 +46,30 @@ export function UserNav() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
-        <DropdownMenuItem>
-          <Button
-            variant="link"
-            className="font-normal h-6"
-            onClick={changeLanguage}
-              >
-            Switch Language ({languages[(langIndex + 1) % languages.length]})
-          </Button>
-        </DropdownMenuItem>
+        {languages.map((lang, index) => (
+          <DropdownMenuItem key={lang} onClick={() => {
+        setLangIndex(index);
+        i18n.changeLanguage(lang);
+          }}>
+        <span className="flex items-center justify-between w-full">
+          {lang.toUpperCase()}
+          {langIndex === index && (
+            <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 text-green-500"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+            >
+          <path
+            fillRule="evenodd"
+            d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+            clipRule="evenodd"
+          />
+            </svg>
+          )}
+        </span>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

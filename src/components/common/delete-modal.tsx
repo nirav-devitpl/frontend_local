@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { DeleteModalProps } from '@/models/delete-model';
+import { t } from 'i18next';
 import { Trash2 } from 'lucide-react';
 
 
@@ -27,9 +28,9 @@ const DeleteModal = ({ message, handleDelete }: DeleteModalProps) => {
             <div className='text-center text-sm text-gray-500'>{message}</div>
             <DialogFooter>
                 <DialogClose asChild>
-                    <Button variant="outline" className='w-1/2'>Cancel</Button>
+                    <Button variant="outline" className='w-1/2 cursor-pointer'>{t('MODAL.CANCEL')}</Button>
                 </DialogClose>
-                <Button variant="destructive" className='w-1/2' onClick={handleDelete}>Yes, Delete</Button>
+                <Button variant="destructive" className='w-1/2 cursor-pointer' onClick={handleDelete}>{t('MODAL.CONFIRM_DELETE')}</Button>
             </DialogFooter>
         </>
     )

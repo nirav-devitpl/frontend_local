@@ -21,13 +21,62 @@
     "PREVIOUS": "Zurück",
     "NEXT": "Weiter",
     "ADD_CHANNEL": "Kanal hinzufügen",
-    "CLEAR_SELECTION": "Auswahl löschen"
+    "EDIT_CHANNEL": "Kanal bearbeiten",
+    "SAVE": "Speichern",
+    "CREATE": "Erstellen",
+    "CLEAR_SELECTION": "Auswahl löschen",
+    "CONFIGURATION": "Konfiguration"
   },
   "LABEL": {
     "CHANNEL_TYPE": "Kanaltyp"
   },
   "FILTER": {
     "INBOUND": "Eingehende",
-    "OUTBOUND": "Ausgehende"
+    "OUTBOUND": "Ausgehende",
+    "PMS_VALUE": "ASA",
+    "VALUE_Aplinebits": "Alpinebits",
+    "VALUE_OTHER": "Sonstige"
+  },
+  "FORM": {
+    "NAME": "Name",
+    "CODE": "Code",
+    "TYPE": "Typ",
+    "SOURCE": "Quelle",
+    "USERNAME": "Benutzername",
+    "PASSWORD": "Passwort",
+    "CLIENT_CODE": "Kundencode",
+    "LINK": "Link",
+    "SUCCESS_MESSAGE": "Kanal erfolgreich gespeichert"
+  },
+  "MODAL": {
+    "PASSWORD_CHANGE_CONFIRMATION": "Sind Sie sicher, dass Sie das Passwort ändern möchten?",
+    "DEACTIVATE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal deaktivieren möchten?",
+    "ACTIVATE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal aktivieren möchten?",
+    "DELETE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal löschen möchten?",
+    "CONFIRM": "Bestätigen",
+    "CANCEL": "Abbrechen",
+    "CONFIRM_DEACTIVATE": "Ja, Deaktivieren",
+    "CONFIRM_ACTIVATE": "Ja, Aktivieren",
+    "CONFIRM_DELETE": "Ja, Löschen",
+    "CONFIRM_PASSWORD_CHANGE": "Ja, Passwort ändern"
+  },
+  "TABLE": {
+    "NO_RESULTS": "Keine Ergebnisse gefunden.",
+    "RECORDS": "Datensätze",
+    "SHOWING": "Zeige {{start}}-{{end}} von insgesamt {{total}} Datensätzen"
+  },
+  "VALIDATION": {
+    "NAME_REQUIRED": "Name ist erforderlich.",
+    "CODE_REQUIRED": "Code ist erforderlich.",    
+    "INVALID_CODE": "Ungültiger Code.",
+    "TYPE_REQUIRED": "Typ ist erforderlich.",
+    "SOURCE_REQUIRED": "Quelle ist erforderlich.",
+    "USERNAME_REQUIRED": "Benutzername ist erforderlich.",
+    "PASSWORD_REQUIRED": "Passwort ist erforderlich.",
+    "PASSWORD_MIN_LENGTH": "Das Passwort muss mindestens 7 Zeichen lang sein.",
+    "PASSWORD_MAX_LENGTH": "Das Passwort darf nicht länger als 12 Zeichen sein.",
+    "PASSWORD_COMPLEXITY": "Ihr Passwort muss mindestens 1 Großbuchstaben, Kleinbuchstaben, Ziffer und Sonderzeichen enthalten.",
+    "CLIENT_CODE_REQUIRED": "Kundencode ist erforderlich.",
+    "INVALID_CLIENT_CODE": "Ungültiger Kundencode."
   }
 }

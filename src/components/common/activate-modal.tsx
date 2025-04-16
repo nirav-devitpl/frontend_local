@@ -1,15 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { DeactivateModalProps } from '@/models/deactivate-model';
+import { ActivateModalProps } from '@/models/activate-model';
 import { useTranslation } from 'react-i18next';
 
 /**
- * deactivate data component
+ * activate data component
  * @param message - Message to be displayed
- * @param handleDeactivate - Function to handle the deactivate
+ * @param handleeactivate - Function to handle the deactivate
  * @returns 
  */
-const DeactivateModal = ({ message, handleDeactivate }: DeactivateModalProps) => {
+const ActivateModal = ({ message, handleActivate }: ActivateModalProps) => {
   const { t } = useTranslation();
 
   return (
@@ -47,7 +47,7 @@ const DeactivateModal = ({ message, handleDeactivate }: DeactivateModalProps) =>
         <Button
           variant="destructive"
           className="w-1/2 cursor-pointer"
-          onClick={handleDeactivate}
+          onClick={handleActivate}
         >
           {t('MODAL.CONFIRM_DEACTIVATE')}
         </Button>
@@ -56,4 +56,4 @@ const DeactivateModal = ({ message, handleDeactivate }: DeactivateModalProps) =>
   );
 };
 
-export default DeactivateModal;
+export default ActivateModal;

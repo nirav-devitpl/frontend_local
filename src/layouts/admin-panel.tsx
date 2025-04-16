@@ -1,13 +1,12 @@
 import { Outlet } from "react-router";
-import { Layout, LayoutBody, LayoutHeader } from "@/components/common/layout";
+import { Layout } from "@/components/common/layout";
 import useIsCollapsed from "@/hooks/use-is-collapsed";
 import Sidebar from "@/components/common/sidebar";
-import Header from "@/components/common/header";
 
 export default function AdminLayout() {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed();
   return (
-    <div className="relative h-full overflow-hidden bg-background">
+    <div className="relative h-full overflow-hidden bg-background mt-[50px]">
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       <main
         id="content"
@@ -17,7 +16,7 @@ export default function AdminLayout() {
       >
         <Layout>
           {/* <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4"> */}
-            <Header /> 
+            {/* <Header />  */}
           {/* </LayoutHeader> */}
           <Outlet />
           {/* <LayoutBody className="space-y-4 px-2 bg-secondary h-full">

@@ -13,6 +13,7 @@ import {
 } from '@/services/channel';
 import DataTableServer from '@/components/common/data-table-server';
 import { ColumnFiltersState, SortingState } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 
  
 /**
@@ -22,7 +23,7 @@ import { ColumnFiltersState, SortingState } from '@tanstack/react-table';
  * @returns {JSX.Element} - The rendered ActiveChannelPage component.
  */
  
-function ActiveChannelPage() {
+function ActiveChannelPage({...props}) {
   const [sorting, setSorting] = useState<SortingState>([
     { id: 'created_at', desc: true },
   ]);
@@ -34,6 +35,8 @@ function ActiveChannelPage() {
   const [total, setTotal] = useState(0);
   const [id, setId] = useState<string | null>(null);
   const [openDeactivateModal, setOpenDeactivateModal] = useState(false);
+
+  const { t } = useTranslation();
  
   const { data, isLoading, refetch } = useGetChannelsQuery(
     {
@@ -43,6 +46,8 @@ function ActiveChannelPage() {
       limit: pagination.limit,
       sortBy: sorting[0]?.id || 'created_at',
       sortOrder: sorting[0]?.desc ? 'desc' : 'asc',
+      channelType:props.filterValue,
+      search:props.searchValue,
       // search: columnFilters?.length > 0 ? columnFilters[0]?.value : '',
     },
     {
@@ -74,7 +79,7 @@ function ActiveChannelPage() {
       });
   };
  
-  const columns = useColumns(handleOpenDeactivateModal, true);
+  const columns = useColumns(handleOpenDeactivateModal, () => {}, true);
  
   useEffect(() => {
     setTotal(data?.total?? 0);
@@ -93,7 +98,7 @@ function ActiveChannelPage() {
           ) : (
               <DataTableServer
                 columns={columns}
-                data={data?.data || []}
+                data={data?.data ?? []}
                 setColumnFilters={setColumnFilters}
                 setPagination={setPagination}
                 setSorting={setSorting}
@@ -109,7 +114,7 @@ function ActiveChannelPage() {
       <Dialog open={openDeactivateModal} onOpenChange={setOpenDeactivateModal}>
         <DialogContent className="p-4 w-[400px]">
           <DeactivateModal
-            message={'Are you sure you want to deactivate this channel?'}
+            message={t('MODAL.DEACTIVATE_CONFIRMATION')}
             handleDeactivate={() => handleDeactivate(id ?? '')}
           />
         </DialogContent>

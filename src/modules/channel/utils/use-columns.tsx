@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router';
  
  
 export default function useColumns(
-    handleOpenDeleteModal: (id: string) => void,
+    handleOpenModal: (id: string) => void,
+    handleActivateModel: (id: string) => void,
     isActiveTab: boolean
 ) {
     const navigate = useNavigate();
@@ -80,7 +81,7 @@ export default function useColumns(
                         <Button
                             size="action"
                             variant="action"
-                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30"
+                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30 cursor-pointer"
                             title="Edit"
                             onClick={() =>
                                 navigate(`/channel-manager/edit/${row?.original?.id}`)
@@ -92,10 +93,10 @@ export default function useColumns(
                         <Button
                             size="action"
                             variant="action"
-                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30"
+                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30 cursor-pointer"
                             title="Activate"
                             onClick={() =>
-                                navigate(`/channel-manager/edit/${row?.original?.id}`)
+                                handleActivateModel(row?.original?.id ?? '')
                             }
                         >
                             <svg
@@ -119,10 +120,10 @@ export default function useColumns(
                         <Button
                             size="action"
                             variant="action"
-                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30"
+                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30 cursor-pointer"
                             title="Deactivate"
                             onClick={() =>
-                                handleOpenDeleteModal(row?.original?.id || '')
+                                handleOpenModal(row?.original?.id ?? '')
                             }
                         >
                             <svg
@@ -145,10 +146,10 @@ export default function useColumns(
                         <Button
                             size="action"
                             variant="action"
-                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30"
+                            className="text-red-500 bg-red-500/10 hover:bg-red-500/30 cursor-pointer"
                             title="Delete"
                             onClick={() =>
-                                handleOpenDeleteModal(row?.original?.id || '')
+                                handleOpenModal(row?.original?.id ?? '')
                             }
                         >
                             <Trash2 size={15} />

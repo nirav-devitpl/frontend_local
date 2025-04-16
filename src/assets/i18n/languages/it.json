@@ -21,13 +21,62 @@
     "PREVIOUS": "Precedente",
     "NEXT": "Successivo",
     "ADD_CHANNEL": "Aggiungi canale",
-    "CLEAR_SELECTION": "Cancella selezione"
+    "EDIT_CHANNEL": "Modifica canale",
+    "SAVE": "Salva",
+    "CREATE": "Crea",
+    "CLEAR_SELECTION": "Cancella selezione",
+    "CONFIGURATION": "Configurazione"
   },
   "LABEL": {
     "CHANNEL_TYPE": "Tipo di Canale"
   } ,
   "FILTER": {
     "INBOUND": "In entrata",
-    "OUTBOUND": "In uscita"
+    "OUTBOUND": "In uscita",
+    "PMS_VALUE": "ASA",
+    "VALUE_Aplinebits": "Alpinebits",
+    "VALUE_OTHER": "Altro"
+  },
+  "FORM": {
+    "NAME": "Nome",
+    "CODE": "Codice",
+    "TYPE": "Tipo",
+    "SOURCE": "Fonte",
+    "USERNAME": "Nome utente",
+    "PASSWORD": "Password",
+    "CLIENT_CODE": "Codice cliente",
+    "LINK": "Collegamento",
+    "SUCCESS_MESSAGE": "Canale salvato con successo"
+  },
+  "MODAL": {
+    "PASSWORD_CHANGE_CONFIRMATION": "Siete sicuri di voler cambiare la password?",
+    "DEACTIVATE_CONFIRMATION": "Siete sicuri di voler disattivare questo canale?",
+    "ACTIVATE_CONFIRMATION": "Siete sicuri di voler attivare questo canale?",
+    "DELETE_CONFIRMATION": "Siete sicuri di voler eliminare questo canale?",
+    "CONFIRM": "Conferma",
+    "CANCEL": "Annulla",
+    "CONFIRM_DEACTIVATE": "Si, Disattiva",
+    "CONFIRM_ACTIVATE": "Si, Attiva",
+    "CONFIRM_DELETE": "Si, Elimina",
+    "CONFIRM_PASSWORD_CHANGE": "Si, Cambia Password"
+  },
+  "TABLE": {
+    "NO_RESULTS": "Nessun risultato trovato.",
+    "RECORDS": "Record",
+    "SHOWING": "Mostrando {{start}}-{{end}} di un totale di {{total}} record"
+  },
+  "VALIDATION": {
+    "NAME_REQUIRED": "Il nome è obbligatorio.",
+    "CODE_REQUIRED": "Il codice è obbligatorio.",
+    "INVALID_CODE": "Codice non valido.",
+    "TYPE_REQUIRED": "Il tipo è obbligatorio.",
+    "SOURCE_REQUIRED": "La fonte è obbligatoria.",
+    "USERNAME_REQUIRED": "Il nome utente è obbligatorio.",
+    "PASSWORD_REQUIRED": "La password è obbligatoria.",
+    "PASSWORD_MIN_LENGTH": "La password deve contenere almeno 7 caratteri.",
+    "PASSWORD_MAX_LENGTH": "La password non deve superare i 12 caratteri.",
+    "PASSWORD_COMPLEXITY": "La password deve contenere almeno 1 maiuscola, minuscola, cifra e carattere speciale.",
+    "CLIENT_CODE_REQUIRED": "Il codice cliente è obbligatorio.",
+    "INVALID_CLIENT_CODE": "Codice cliente non valido."
   }
 }
