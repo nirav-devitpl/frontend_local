@@ -68,6 +68,7 @@
   "VALIDATION": {
     "NAME_REQUIRED": "Name is required.",
     "CODE_REQUIRED": "Code is required.",
+    "INVALID_EMAIL": "Invalid email address",
     "INVALID_CODE": "Invalid Code.",
     "TYPE_REQUIRED": "Type is required.",
     "SOURCE_REQUIRED": "Source is required.",
@@ -78,5 +79,29 @@
     "PASSWORD_COMPLEXITY": "Your password must have at least 1 uppercase, lowercase, digit, and special character.",
     "CLIENT_CODE_REQUIRED": "Client Code is required.",
     "INVALID_CLIENT_CODE": "Invalid Client Code."
-  }  
+  },  
+  "LOGIN_FORM": {
+    "TITLE": "Welcome Back",
+    "DESCRIPTION": "Log in to your account",
+    "PLACEHOLDERS": {
+      "EMAIL": "What's your email?",
+      "PASSWORD": "Enter your password"
+    },
+    "LABELS": {
+      "REMEMBER_ME": "Remember me",
+      "FORGOT_PASSWORD": "Forgot password?"
+    },
+    "BUTTONS": {
+      "LOGIN": "Log In"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Invalid email address",
+      "PASSWORD_MIN": "Password must be at least 6 characters",
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "LOGIN_SUCCESS": "Login successful!",
+      "LOGOUT_SUCCESS": "Logout successful!"
+    }
+  }
 }

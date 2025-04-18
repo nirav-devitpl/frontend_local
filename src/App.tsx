@@ -18,11 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/auth/*" element={!isAuthenticated ? <AuthRoutes /> : <Navigate to="/categories/list" replace />} />
+        <Route path="/auth/*" element={!isAuthenticated ? <AuthRoutes /> : <Navigate to="/categories/list" replace />} />
         <Route 
           path="/*" 
           element={isAuthenticated ? <PrivateRoutes /> : <Navigate to="/auth/sign-in" replace />} 
-        /> */}
+        />
 
     <Route path="/auth/*" element={<AuthRoutes />} />
     <Route path="/*" element={<PrivateRoutes />} />

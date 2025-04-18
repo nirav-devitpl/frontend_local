@@ -68,6 +68,7 @@
   "VALIDATION": {
     "NAME_REQUIRED": "Il nome è obbligatorio.",
     "CODE_REQUIRED": "Il codice è obbligatorio.",
+    "INVALID_EMAIL": "Indirizzo email non valido",
     "INVALID_CODE": "Codice non valido.",
     "TYPE_REQUIRED": "Il tipo è obbligatorio.",
     "SOURCE_REQUIRED": "La fonte è obbligatoria.",
@@ -78,5 +79,29 @@
     "PASSWORD_COMPLEXITY": "La password deve contenere almeno 1 maiuscola, minuscola, cifra e carattere speciale.",
     "CLIENT_CODE_REQUIRED": "Il codice cliente è obbligatorio.",
     "INVALID_CLIENT_CODE": "Codice cliente non valido."
-  }
+  },  
+  "LOGIN_FORM": {
+    "TITLE": "Bentornato",
+    "DESCRIPTION": "Accedi al tuo account",
+    "PLACEHOLDERS": {
+      "EMAIL": "Qual è la tua email?",
+      "PASSWORD": "Inserisci la tua password"
+    },
+    "LABELS": {
+      "REMEMBER_ME": "Ricordati di me",
+      "FORGOT_PASSWORD": "Hai dimenticato la password?"
+    },
+    "BUTTONS": {
+      "LOGIN": "Accedi"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Indirizzo email non valido",
+      "PASSWORD_MIN": "La password deve contenere almeno 6 caratteri",
+      "ERROR_MESSAGE": "Credenziali di accesso non valide"
+    },
+    "SUCCESS": {
+      "LOGIN_SUCCESS": "Accesso riuscito!",
+      "LOGOUT_SUCCESS": "Disconnessione riuscita!"
+    }
+  }  
 }

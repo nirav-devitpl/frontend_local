@@ -67,7 +67,8 @@
   },
   "VALIDATION": {
     "NAME_REQUIRED": "Name ist erforderlich.",
-    "CODE_REQUIRED": "Code ist erforderlich.",    
+    "CODE_REQUIRED": "Code ist erforderlich.",
+    "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
     "INVALID_CODE": "Ungültiger Code.",
     "TYPE_REQUIRED": "Typ ist erforderlich.",
     "SOURCE_REQUIRED": "Quelle ist erforderlich.",
@@ -78,5 +79,29 @@
     "PASSWORD_COMPLEXITY": "Ihr Passwort muss mindestens 1 Großbuchstaben, Kleinbuchstaben, Ziffer und Sonderzeichen enthalten.",
     "CLIENT_CODE_REQUIRED": "Kundencode ist erforderlich.",
     "INVALID_CLIENT_CODE": "Ungültiger Kundencode."
-  }
+  },  
+  "LOGIN_FORM": {
+    "TITLE": "Willkommen zurück",
+    "DESCRIPTION": "Melden Sie sich in Ihrem Konto an",
+    "PLACEHOLDERS": {
+      "EMAIL": "Wie lautet Ihre E-Mail?",
+      "PASSWORD": "Geben Sie Ihr Passwort ein"
+    },
+    "LABELS": {
+      "REMEMBER_ME": "Erinnere dich an mich",
+      "FORGOT_PASSWORD": "Passwort vergessen?"
+    },
+    "BUTTONS": {
+      "LOGIN": "Einloggen"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
+      "PASSWORD_MIN": "Das Passwort muss mindestens 6 Zeichen lang sein",
+      "ERROR_MESSAGE": "Ungültige Anmeldeinformationen"
+    },
+    "SUCCESS": {
+      "LOGIN_SUCCESS": "Anmeldung erfolgreich!",
+      "LOGOUT_SUCCESS": "Abmeldung erfolgreich!"
+    }
+  }  
 }
