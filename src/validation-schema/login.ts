@@ -5,13 +5,12 @@ const getTranslation = (key: string) => i18n.t(key);
 
 export const loginSchema = z.object({
   email: z
-    .string()
-    .min(1, { message: getTranslation("VALIDATION.EMAIL_REQUIRED") })
-    .email({ message: getTranslation("VALIDATION.INVALID_EMAIL") }),
+      .string()
+      .min(1, { message: getTranslation('LOGIN_FORM.VALIDATION.EMAIL_REQUIRED') })
+      .email({ message: getTranslation('LOGIN_FORM.VALIDATION.INVALID_EMAIL') }),
   password: z
-    .string()
-    .min(1, { message: getTranslation("VALIDATION.PASSWORD_REQUIRED") })
-    .min(7, { message: getTranslation("VALIDATION.PASSWORD_MIN_LENGTH") })
-    .max(12, { message: getTranslation("VALIDATION.PASSWORD_MAX_LENGTH") }),
+      .string()
+      .min(1, { message: getTranslation('LOGIN_FORM.VALIDATION.PASSWORD_REQUIRED') })
+      .min(7, { message: getTranslation('LOGIN_FORM.VALIDATION.PASSWORD_MIN_LENGTH') }),
   rememberMe: z.boolean().optional(),
 });

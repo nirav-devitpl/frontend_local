@@ -1,10 +1,10 @@
 import { baseApi } from './base-api';
 
-const loginApi = baseApi.injectEndpoints({
+const otpApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    otp: builder.mutation({
       query: (data) => ({
-        url: 'auth/login',
+        url: 'auth/verify-otp', 
         method: 'POST',
         body: data,
       }),
@@ -13,5 +13,5 @@ const loginApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useLoginMutation,
-} = loginApi;
+  useOtpMutation, 
+} = otpApi;

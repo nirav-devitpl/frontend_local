@@ -1,10 +1,10 @@
 import { baseApi } from './base-api';
 
-const loginApi = baseApi.injectEndpoints({
+const forgotPasswordApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    forgotPassword: builder.mutation({
       query: (data) => ({
-        url: 'auth/login',
+        url: 'auth/forgot-password', 
         method: 'POST',
         body: data,
       }),
@@ -13,5 +13,5 @@ const loginApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useLoginMutation,
-} = loginApi;
+  useForgotPasswordMutation, 
+} = forgotPasswordApi;

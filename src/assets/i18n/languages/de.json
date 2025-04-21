@@ -68,6 +68,7 @@
   "VALIDATION": {
     "NAME_REQUIRED": "Name ist erforderlich.",
     "CODE_REQUIRED": "Code ist erforderlich.",
+    "EMAIL_REQUIRED": "E-Mail ist erforderlich.",
     "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
     "INVALID_CODE": "Ungültiger Code.",
     "TYPE_REQUIRED": "Typ ist erforderlich.",
@@ -94,6 +95,12 @@
     "BUTTONS": {
       "LOGIN": "Einloggen"
     },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "E-Mail ist erforderlich.",
+      "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
+      "PASSWORD_REQUIRED": "Passwort ist erforderlich.",
+      "PASSWORD_MIN_LENGTH": "Das Passwort muss mindestens 6 Zeichen lang sein."
+    },
     "ERRORS": {
       "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
       "PASSWORD_MIN": "Das Passwort muss mindestens 6 Zeichen lang sein",
@@ -103,5 +110,41 @@
       "LOGIN_SUCCESS": "Anmeldung erfolgreich!",
       "LOGOUT_SUCCESS": "Abmeldung erfolgreich!"
     }
-  }  
+  },
+  "FORGOT_PASSWORD_FORM": {
+    "TITLE": "Setzen Sie Ihr Passwort zurück",
+    "DESCRIPTION": "Passwort vergessen",
+    "ALREADY_HAVE_ACCOUNT": "Bereits ein Konto?",
+    "LOGIN": "Einloggen",
+    "PLACEHOLDERS": {
+      "EMAIL": "Wie lautet Ihre E-Mail?"
+    },
+    "BUTTONS": {
+      "CONTINUE": "Fortfahren",
+      "VERIFY": "Überprüfen",
+      "RESEND_CODE": "Code erneut senden"
+    },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "E-Mail ist erforderlich.",
+      "INVALID_EMAIL": "Ungültige E-Mail-Adresse"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Ungültige E-Mail-Adresse",
+      "ERROR_MESSAGE": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+    },
+    "SUCCESS": {
+      "FORGOT_PASSWORD_SUCCESS": "Passwort erfolgreich zurückgesetzt!"
+    },
+    "TERMS":{
+      "DESCRIPTION": "Indem Sie fortfahren, stimmen Sie unseren",
+      "TERMS": "Nutzungsbedingungen",
+      "PRIVACY": "Datenschutzbestimmungen"
+    },
+    "MODAL": {
+      "TITLE": "Fast fertig",
+      "DESCRIPTION": "Bitte geben Sie den Code ein, den wir Ihnen per E-Mail gesendet haben",
+      "SUPPORT_MESSAGE": "Zugriff auf Ihre E-Mail nicht möglich?",
+      "CONTACT_SUPPORT": "Support kontaktieren"
+    }
+  }
 }

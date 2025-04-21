@@ -68,6 +68,7 @@
   "VALIDATION": {
     "NAME_REQUIRED": "Il nome è obbligatorio.",
     "CODE_REQUIRED": "Il codice è obbligatorio.",
+    "EMAIL_REQUIRED": "Email è obbligatoria.",
     "INVALID_EMAIL": "Indirizzo email non valido",
     "INVALID_CODE": "Codice non valido.",
     "TYPE_REQUIRED": "Il tipo è obbligatorio.",
@@ -94,6 +95,12 @@
     "BUTTONS": {
       "LOGIN": "Accedi"
     },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email è obbligatoria.",
+      "INVALID_EMAIL": "Indirizzo email non valido",
+      "PASSWORD_REQUIRED": "La password è obbligatoria.",
+      "PASSWORD_MIN_LENGTH": "La password deve contenere almeno 6 caratteri."
+    },
     "ERRORS": {
       "INVALID_EMAIL": "Indirizzo email non valido",
       "PASSWORD_MIN": "La password deve contenere almeno 6 caratteri",
@@ -103,5 +110,41 @@
       "LOGIN_SUCCESS": "Accesso riuscito!",
       "LOGOUT_SUCCESS": "Disconnessione riuscita!"
     }
-  }  
+  },
+  "FORGOT_PASSWORD_FORM": {
+    "TITLE": "Reimposta la tua password",
+    "DESCRIPTION": "Password dimenticata",
+    "ALREADY_HAVE_ACCOUNT": "Hai già un account?",
+    "LOGIN": "Accedi",
+    "PLACEHOLDERS": {
+      "EMAIL": "Qual è la tua email?"
+    },
+    "BUTTONS": {
+      "CONTINUE": "Continua",
+      "VERIFY": "Verifica",
+      "RESEND_CODE": "Reinvia codice"
+    },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email è obbligatoria.",
+      "INVALID_EMAIL": "Indirizzo email non valido"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Indirizzo email non valido",
+      "ERROR_MESSAGE": "Qualcosa è andato storto. Riprova."
+    },
+    "SUCCESS": {
+      "FORGOT_PASSWORD_SUCCESS": "Password reimpostata con successo!"
+    },
+    "TERMS": {
+      "DESCRIPTION": "Continuando, accetti i nostri",
+      "TERMS": "Termini di servizio",
+      "PRIVACY": "Informativa sulla privacy"
+    },
+    "MODAL": {
+      "TITLE": "Quasi fatto",
+      "DESCRIPTION": "Per favore, inserisci il codice che ti abbiamo inviato via email",
+      "SUPPORT_MESSAGE": "Zugriff auf Ihre E-Mail nicht möglich?",
+      "CONTACT_SUPPORT": "Contatta il supporto"
+    }
+  }
 }

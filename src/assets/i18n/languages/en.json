@@ -67,8 +67,7 @@
   },   
   "VALIDATION": {
     "NAME_REQUIRED": "Name is required.",
-    "CODE_REQUIRED": "Code is required.",
-    "INVALID_EMAIL": "Invalid email address",
+    "CODE_REQUIRED": "Code is required.",    
     "INVALID_CODE": "Invalid Code.",
     "TYPE_REQUIRED": "Type is required.",
     "SOURCE_REQUIRED": "Source is required.",
@@ -94,6 +93,12 @@
     "BUTTONS": {
       "LOGIN": "Log In"
     },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email is required.",
+      "INVALID_EMAIL": "Invalid email address",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "PASSWORD_MIN_LENGTH": "Password must be at least 7 characters long."
+    },
     "ERRORS": {
       "INVALID_EMAIL": "Invalid email address",
       "PASSWORD_MIN": "Password must be at least 6 characters",
@@ -102,6 +107,42 @@
     "SUCCESS": {
       "LOGIN_SUCCESS": "Login successful!",
       "LOGOUT_SUCCESS": "Logout successful!"
+    }
+  },
+  "FORGOT_PASSWORD_FORM": {
+    "TITLE": "Reset your Password",
+    "DESCRIPTION": "Forgot Password",
+    "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+    "LOGIN": "Log In",
+    "PLACEHOLDERS": {
+      "EMAIL": "What's your email?"
+    },
+    "BUTTONS": {
+      "LOGIN": "Continue",
+      "VERIFY": "Verify",
+      "RESEND_CODE": "Resend Code"
+    },
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email is required.",
+      "INVALID_EMAIL": "Invalid email address"
+    },
+    "ERRORS": {
+      "INVALID_EMAIL": "Invalid email address",
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "FORGOT_PASSWORD_SUCCESS": "Password reset link sent to your email!"
+    },
+    "TERMS":{
+      "DESCRIPTION": "By continuing you agree to our",
+      "TERMS": "Terms & Conditions",
+      "PRIVACY": "Privacy Policy"
+    },
+    "MODAL": {
+      "TITLE": "Almost done",
+      "DESCRIPTION": "Please type the code we sent in your email",
+      "SUPPORT_MESSAGE": "Can't access to your email?",
+      "CONTACT_SUPPORT": "Contact Support"
     }
   }
 }
