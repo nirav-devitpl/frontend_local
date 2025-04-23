@@ -1,17 +1,29 @@
 import { getToken } from "@/lib/utils";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// First baseApi instance
 export const baseApi = createApi({
   reducerPath: "commentsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_API_BASE_URL}`,
+    baseUrl: `${import.meta.env.VITE_AUTH_API_BASE_URL}`,
     prepareHeaders: (header) => {
       header.append("Authorization", `Bearer ${getToken()}`);
       header.append("Accept-Language", `${localStorage.getItem("i18nextLng")}`);
     },
   }),
   tagTypes: ['CHANNEL'],
+  endpoints: () => ({}),
+});
+
+export const keyClockBaseApi = createApi({
+  reducerPath: "keyClockAPI",
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${import.meta.env.VITE_AUTH_API_BASE_URL}`,
+    prepareHeaders: (header) => {
+      header.append("Authorization", `Bearer ${getToken()}`);
+      header.append("Accept-Language", `${localStorage.getItem("i18nextLng")}`);
+    },
+  }),
+  tagTypes: ['AUTH'],
   endpoints: () => ({}),
 });
 
@@ -31,4 +43,3 @@ export const alpinebitsApi = createApi({
   tagTypes: ['ALPINEBITS'],
   endpoints: () => ({}),
 });
-

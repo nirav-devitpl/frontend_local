@@ -1,0 +1,13 @@
+import { z } from 'zod';
+import i18n from 'i18next'; // Import i18next to fetch translations dynamically
+
+// Function to dynamically fetch translations
+const getTranslation = (key: string) => i18n.t(key);
+
+// Changed from a constant schema to a function that returns the schema
+export const getRoleSchema = () => {
+  return z.object({
+    role_name: z.string().min(1, { message: getTranslation('VALIDATION.CODE_REQUIRED') }),
+    permissions: z.array(z.string()).nonempty({ message: getTranslation('VALIDATION.PERMISSIONS_REQUIRED') }),
+  });
+};

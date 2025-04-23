@@ -206,3 +206,75 @@ export const LoadingIcon: React.FC = () => {
         </svg>
     )
 }
+
+/**
+ * @name TickIcon
+ * @description TickIcon component renders a tick icon SVG.
+ * @returns {JSX.Element} - The rendered TickIcon component.
+ */
+export const TickIcon: React.FC = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 text-green-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            >
+            <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                clipRule="evenodd"
+            />
+        </svg>
+    )
+}
+
+
+/**
+ * @name SignoutIcon
+ * @description SignoutIcon component renders a sign-out icon SVG.
+ * @returns {JSX.Element} - The rendered SignoutIcon component.
+ */
+export const SignoutIcon: React.FC = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+        </svg>
+    )
+}
+
+/**
+ * @name AddIcon
+ * @description AddIcon component renders an add icon SVG.
+ * @returns {JSX.Element} - The rendered AddIcon component.
+ */
+export const AddIcon: React.FC = () => {
+    return (
+        <svg
+            width="17"
+            height="16"
+            viewBox="0 0 17 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M8.5 1V15M1.5 8H15.5"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}

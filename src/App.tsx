@@ -5,27 +5,33 @@ import { getToken } from "./lib/utils";
 import { useEffect, useState } from "react";
 
 function App() {
-  // Simulating authentication check - replace with your actual auth logic
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  
+  useEffect(()=>{
+    const token = getToken();
+    setAuthToken(token ?? null);
+  },[])
 
-  useEffect(() => {
-
-    setTimeout(() => {
-      setIsAuthenticated(getToken() !== null);
-    }, 2000);
-  }, [isAuthenticated]);
+  useEffect(()=>{
+    setIsAuthenticated(authToken !== null);
+  },[authToken])
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth/*" element={!isAuthenticated ? <AuthRoutes /> : <Navigate to="/categories/list" replace />} />
-        <Route 
-          path="/*" 
-          element={isAuthenticated ? <PrivateRoutes /> : <Navigate to="/auth/sign-in" replace />} 
-        />
+        Auth Routes
+        <Route path="/auth/*" element={<AuthRoutes />} />
 
-    <Route path="/auth/*" element={<AuthRoutes />} />
-    <Route path="/*" element={<PrivateRoutes />} />
+        {/* Private Routes */}
+        {/* <Route
+          path="/*"
+          element={isAuthenticated ? <PrivateRoutes /> : <Navigate to="/auth/sign-in" replace />}
+        /> */}
+        <Route
+          path="/*"
+          element={<PrivateRoutes />} 
+        />
       </Routes>
     </BrowserRouter>
   );

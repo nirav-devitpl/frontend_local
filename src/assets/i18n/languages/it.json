@@ -2,6 +2,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Cruscotto",
     "CHANNEL_MANAGER": "Gestore Canali",
+    "ROLE_MANAGER": "Ruoli",
     "BOOKING_MANAGER": "Gestore Prenotazioni",
     "INVENTORY": "Inventario",
     "DATA_MANAGEMENT": "Gestione Dati",
@@ -22,13 +23,18 @@
     "NEXT": "Successivo",
     "ADD_CHANNEL": "Aggiungi canale",
     "EDIT_CHANNEL": "Modifica canale",
+    "ADD_ROLE": "Aggiungi nuovo ruolo",
+    "EDIT_ROLE": "Modifica ruolo",
     "SAVE": "Salva",
     "CREATE": "Crea",
     "CLEAR_SELECTION": "Cancella selezione",
     "CONFIGURATION": "Configurazione"
   },
   "LABEL": {
-    "CHANNEL_TYPE": "Tipo di Canale"
+    "CHANNEL_TYPE": "Tipo di Canale",
+    "ROLE_TYPE": "Tipo di Ruolo",
+    "PERMISSIONS": "Permessi",
+    "FEATURES": "Funzionalità"
   } ,
   "FILTER": {
     "INBOUND": "In entrata",
@@ -46,13 +52,15 @@
     "PASSWORD": "Password",
     "CLIENT_CODE": "Codice cliente",
     "LINK": "Collegamento",
-    "SUCCESS_MESSAGE": "Canale salvato con successo"
+    "SUCCESS_MESSAGE": "Canale salvato con successo",
+    "ROLE_SUCCESS_MESSAGE": "Ruolo salvato con successo"
   },
   "MODAL": {
     "PASSWORD_CHANGE_CONFIRMATION": "Siete sicuri di voler cambiare la password?",
     "DEACTIVATE_CONFIRMATION": "Siete sicuri di voler disattivare questo canale?",
     "ACTIVATE_CONFIRMATION": "Siete sicuri di voler attivare questo canale?",
     "DELETE_CONFIRMATION": "Siete sicuri di voler eliminare questo canale?",
+    "DELETE_CONFIRMATION_ROLE": "Siete sicuri di voler eliminare questo ruolo?",
     "CONFIRM": "Conferma",
     "CANCEL": "Annulla",
     "CONFIRM_DEACTIVATE": "Si, Disattiva",
@@ -93,7 +101,7 @@
       "FORGOT_PASSWORD": "Hai dimenticato la password?"
     },
     "BUTTONS": {
-      "LOGIN": "Accedi"
+      "LOGIN": "Continua"
     },
     "VALIDATION": {
       "EMAIL_REQUIRED": "Email è obbligatoria.",
@@ -133,7 +141,8 @@
       "ERROR_MESSAGE": "Qualcosa è andato storto. Riprova."
     },
     "SUCCESS": {
-      "FORGOT_PASSWORD_SUCCESS": "Password reimpostata con successo!"
+      "FORGOT_PASSWORD_SUCCESS": "Password reimpostata con successo!",
+      "LOGIN_SUCCESS": "Accesso effettuato con successo!"
     },
     "TERMS": {
       "DESCRIPTION": "Continuando, accetti i nostri",
@@ -146,5 +155,35 @@
       "SUPPORT_MESSAGE": "Zugriff auf Ihre E-Mail nicht möglich?",
       "CONTACT_SUPPORT": "Contatta il supporto"
     }
+  },
+  "RESET_PASSWORD_FORM": {
+    "TITLE": "Reimposta la tua password",
+    "DESCRIPTION": "Inserisci la tua nuova password",
+    "PLACEHOLDERS": {
+      "NEW_PASSWORD": "Nuova password",
+      "CONFIRM_PASSWORD": "Conferma password"
+    },
+    "BUTTONS": {
+      "SUBMIT": "Cambia password"
+    },
+    "VALIDATION": {
+      "NEW_PASSWORD_REQUIRED": "La nuova password è obbligatoria",
+      "CONFIRM_PASSWORD_REQUIRED": "La conferma della password è obbligatoria",
+      "PASSWORD_MIN_LENGTH": "La password deve contenere almeno 8 caratteri",
+      "PASSWORD_MAX_LENGTH": "La password non deve superare i 20 caratteri",
+      "PASSWORD_COMPLEXITY": "La password deve contenere almeno 1 maiuscola, minuscola, cifra e carattere speciale",
+      "PASSWORD_MISMATCH": "Le password non corrispondono"
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Qualcosa è andato storto. Riprova."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Password reimpostata con successo!"
+    }
+  },
+  "PASSWORD_METER": {
+    "WEAK_PASSWORD": "Pessimo lavoro! La tua password è debole.",
+    "MEDIUM_PASSWORD": "Non male, ma potrebbe essere migliore! La tua password è media.",
+    "STRONG_PASSWORD": "Ottimo lavoro! La tua password è forte."
   }
 }

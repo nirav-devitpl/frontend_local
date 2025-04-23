@@ -2,6 +2,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Instrumententafel",
     "CHANNEL_MANAGER": "Kanalmanager",
+    "ROLE_MANAGER": "Rollen",
     "BOOKING_MANAGER": "Buchungsmanager",
     "INVENTORY": "Inventar",
     "DATA_MANAGEMENT": "Datenverwaltung",
@@ -22,13 +23,18 @@
     "NEXT": "Weiter",
     "ADD_CHANNEL": "Kanal hinzufügen",
     "EDIT_CHANNEL": "Kanal bearbeiten",
+    "ADD_ROLE": "Neue Rolle hinzufügen",
+    "EDIT_ROLE": "Rolle bearbeiten",
     "SAVE": "Speichern",
     "CREATE": "Erstellen",
     "CLEAR_SELECTION": "Auswahl löschen",
     "CONFIGURATION": "Konfiguration"
   },
   "LABEL": {
-    "CHANNEL_TYPE": "Kanaltyp"
+    "CHANNEL_TYPE": "Kanaltyp",
+    "ROLE_TYPE": "Rollenart",
+    "PERMISSIONS": "Berechtigungen",
+    "FEATURES": "Funktionen"
   },
   "FILTER": {
     "INBOUND": "Eingehende",
@@ -46,13 +52,15 @@
     "PASSWORD": "Passwort",
     "CLIENT_CODE": "Kundencode",
     "LINK": "Link",
-    "SUCCESS_MESSAGE": "Kanal erfolgreich gespeichert"
+    "SUCCESS_MESSAGE": "Kanal erfolgreich gespeichert",    
+    "ROLE_SUCCESS_MESSAGE": "Rolle erfolgreich gespeichert"
   },
   "MODAL": {
     "PASSWORD_CHANGE_CONFIRMATION": "Sind Sie sicher, dass Sie das Passwort ändern möchten?",
     "DEACTIVATE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal deaktivieren möchten?",
     "ACTIVATE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal aktivieren möchten?",
     "DELETE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal löschen möchten?",
+    "DELETE_CONFIRMATION_ROLE": "Sind Sie sicher, dass Sie diese Rolle löschen möchten?",
     "CONFIRM": "Bestätigen",
     "CANCEL": "Abbrechen",
     "CONFIRM_DEACTIVATE": "Ja, Deaktivieren",
@@ -93,7 +101,7 @@
       "FORGOT_PASSWORD": "Passwort vergessen?"
     },
     "BUTTONS": {
-      "LOGIN": "Einloggen"
+      "LOGIN": "Weiter"
     },
     "VALIDATION": {
       "EMAIL_REQUIRED": "E-Mail ist erforderlich.",
@@ -133,7 +141,8 @@
       "ERROR_MESSAGE": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
     },
     "SUCCESS": {
-      "FORGOT_PASSWORD_SUCCESS": "Passwort erfolgreich zurückgesetzt!"
+      "FORGOT_PASSWORD_SUCCESS": "Passwort erfolgreich zurückgesetzt!",
+      "LOGIN_SUCCESS": "Sie haben sich erfolgreich angemeldet!"
     },
     "TERMS":{
       "DESCRIPTION": "Indem Sie fortfahren, stimmen Sie unseren",
@@ -146,5 +155,35 @@
       "SUPPORT_MESSAGE": "Zugriff auf Ihre E-Mail nicht möglich?",
       "CONTACT_SUPPORT": "Support kontaktieren"
     }
+  },
+  "RESET_PASSWORD_FORM": {
+    "TITLE": "Setzen Sie Ihr Passwort zurück",
+    "DESCRIPTION": "Bitte geben Sie Ihr neues Passwort ein",
+    "PLACEHOLDERS": {
+      "NEW_PASSWORD": "Neues Passwort",
+      "CONFIRM_PASSWORD": "Passwort bestätigen"
+    },
+    "BUTTONS": {
+      "SUBMIT": "Passwort ändern"
+    },
+    "VALIDATION": {
+      "NEW_PASSWORD_REQUIRED": "Neues Passwort ist erforderlich",
+      "CONFIRM_PASSWORD_REQUIRED": "Passwortbestätigung ist erforderlich",
+      "PASSWORD_MIN_LENGTH": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "PASSWORD_MAX_LENGTH": "Das Passwort darf nicht länger als 20 Zeichen sein",
+      "PASSWORD_COMPLEXITY": "Ihr Passwort muss mindestens 1 Großbuchstaben, Kleinbuchstaben, Ziffer und Sonderzeichen enthalten",
+      "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein"
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Passwort erfolgreich zurückgesetzt!"
+    }
+  },
+  "PASSWORD_METER": {
+    "WEAK_PASSWORD": "Schlechtes Ergebnis! Ihr Passwort ist schwach.",
+    "MEDIUM_PASSWORD": "Nicht schlecht, aber es könnte besser sein! Ihr Passwort ist durchschnittlich.",
+    "STRONG_PASSWORD": "Großartig! Ihr Passwort ist stark."
   }
 }

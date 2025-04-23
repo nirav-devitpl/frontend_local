@@ -1,17 +1,17 @@
-import { baseApi } from './base-api';
+// import { keyClockBaseApi } from './base-api';
 
-const loginApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (data) => ({
-        url: 'auth/login',
-        method: 'POST',
-        body: data,
-      }),
-    }),
-  }),
-});
+// export const loginApi = keyClockBaseApi.injectEndpoints({
+//   endpoints: (builder) => ({
+//     login: builder.mutation({
+//       query: (data) => ({
+//         url: 'auth/login',
+//         method: 'POST',
+//         body: data,
+//       }),
+//     }),
+//   }),
+// });
 
-export const {
-  useLoginMutation,
-} = loginApi;
+// export const {
+//   useLoginMutation,
+// } = loginApi;

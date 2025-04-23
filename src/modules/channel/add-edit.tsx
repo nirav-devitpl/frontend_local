@@ -83,7 +83,7 @@ function ChannelAddEditPage() {
             </p>
             <div className="flex items-center">
               <Button
-                className="w-40 h-9 rounded-md p-2.5 gap-2 bg-[#e64560] cursor-pointer hover:bg-[#e64560]/90"
+                className="w-40 h-9 rounded-md p-2.5 gap-2 bg-[#e64560] cursor-pointer hover:bg-[#E64560]/90"
                 variant="default"
                 onClick={handleSaveClick}
               >

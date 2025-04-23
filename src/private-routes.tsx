@@ -5,7 +5,11 @@ import { getToken } from "./lib/utils";
 import HomePage from "./modules/home";
 import CustomerRoutes from "./modules/customers/routes";
 import ChannelRoutes from "./modules/channel/routes";
+import RoleRoutes from "./modules/roles/routes";
+
+
 function PrivateRoutes() {
+    console.log('PrivateRoutes');
     return (
             // <AuthenticatedTemplate>
                 <Routes>
@@ -14,6 +18,7 @@ function PrivateRoutes() {
                         <Route path="/categories/*" element={<CategoryRoutes />} />
                         <Route path="/customer/*" element={<CustomerRoutes />} />                        
                         <Route path="/channel-manager/*" element={<ChannelRoutes />} />
+                        <Route path="/roles/*" element={<RoleRoutes />} />
                     </Route>
                 </Routes>
             // </AuthenticatedTemplate>

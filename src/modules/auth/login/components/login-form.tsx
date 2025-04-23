@@ -11,9 +11,10 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import i18n from '@/assets/i18n';
 import { useEffect, useState } from "react";
-import { useLoginMutation } from "@/services/login";
+import { useLoginMutation } from "@/services/auth";
 import showToast from "@/components/common/toast";
 import {HandIcon, LockIcon, EyeOff, Eye, LoadingIcon} from "@/components/common/icon";
+import { useNavigate } from "react-router-dom";
 
 /**
  * @memberof auth
@@ -23,6 +24,7 @@ import {HandIcon, LockIcon, EyeOff, Eye, LoadingIcon} from "@/components/common/
  */
 function LoginForm() {
 
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const [login, { isLoading }] = useLoginMutation();
     const [showPassword, setShowPassword] = useState(false);
@@ -38,21 +40,29 @@ function LoginForm() {
 
     const onSubmit = (data: z.infer<typeof loginSchema>) => {
         const payload = {
-            email: data.email,
+            username: 'nirav.bhut',
             password: data.password,
-            rememberMe: data.rememberMe,
+            //rememberMe: data.rememberMe,
         };
 
-        login({...payload})
+        login({ ...payload })
         .unwrap()
         .then((response) => {
             if (response?.status === 'success' || response?.status === 200 || response?.status === 201) {
-                showToast(t('LOGIN_FORM.ERRORS.SUCCESS_MESSAGE'), 'success');
+                // Set localstorage for access and refresh tokens
+                const { access_token, refresh_token, expires_in } = response.result;
+                console.log(response);
+                localStorage.setItem('token', access_token);
+                localStorage.setItem('refresh_token', refresh_token);
+                localStorage.setItem('expires_in', expires_in.toString());
+
+                showToast(t('LOGIN_FORM.SUCCESS.LOGIN_SUCCESS'), 'success');
+                navigate('/channel-manager');
             } else {
                 showToast(response?.message ?? t('LOGIN_FORM.ERRORS.ERROR_MESSAGE'), 'error');
             }
         })
-        .catch((err) => {
+        .catch((err: any) => {
             const errorMessage = err?.data?.message ?? t('LOGIN_FORM.ERRORS.ERROR_MESSAGE');
             console.error('Error:', err);
             showToast(errorMessage, 'error');
@@ -114,16 +124,17 @@ function LoginForm() {
                                             }`}
                                         />
                                         <Button
-                                                type="button"
-                                                className="absolute inset-y-0 right-1 top-1 flex items-cente border-0 cursor-pointer"
-                                                onClick={() => setShowPassword(!showPassword)}
-                                                >
-                                                {showPassword ? (
-                                                    <EyeOff />
-                                                ) : (
-                                                    <Eye />
-                                                )}
-                                            </Button>
+                                            type="button"
+                                            variant={"icon"}
+                                            className="absolute inset-y-0 right-1 top-1 flex items-cente border-0 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            >
+                                            {showPassword ? (
+                                                <EyeOff />
+                                            ) : (
+                                                <Eye />
+                                            )}
+                                        </Button>
                                     </div>
                                 </FormControl>      
                                 <FormMessage>{fieldState.error?.message}</FormMessage>                  
@@ -136,21 +147,29 @@ function LoginForm() {
                         name="rememberMe"
                         render={({ field }) => (
                             <FormItem>
-                                <FormControl className="flex items-center space-x-">
-                                    <div className="flex items-center space-x-2 pt-2">                                        
-                                        <Input
-                                            type="checkbox"
-                                            id="rememberMe"
-                                            checked={field.value || false}
-                                            onChange={field.onChange}
-                                            className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
-                                        />
-                                        <label htmlFor="rememberMe" className="text-sm text-gray-700 cursor-pointer">
-                                            {t('LOGIN_FORM.LABELS.REMEMBER_ME')}
-                                        </label>
-                                        <Link to="/auth/forgot-password" className="flex font-poppins font-medium text-sm leading-[22px] tracking-normal text-right text-[#e64560]">
+                                <FormControl className="flex items-center space-x-0">
+                                    <div className="flex justify-between items-center">
+                                        {/* Remember Me Checkbox */}
+                                        <div className="flex items-center space-x-2">
+                                            <Input
+                                                type="checkbox"
+                                                id="rememberMe"
+                                                checked={field.value || false}
+                                                onChange={field.onChange}
+                                                className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                                            />
+                                            <label htmlFor="rememberMe" className="text-sm text-gray-700 cursor-pointer font-medium">
+                                                {t('LOGIN_FORM.LABELS.REMEMBER_ME')}
+                                            </label>
+                                        </div>
+
+                                        {/* Forgot Password Link */}
+                                        <Link
+                                            to="/auth/forgot-password"
+                                            className="font-poppins font-medium text-sm leading-[22px] tracking-normal text-[#e64560] hover:underline"
+                                        >
                                             {t('LOGIN_FORM.LABELS.FORGOT_PASSWORD')}
-                                        </Link>                                
+                                        </Link>
                                     </div>
                                 </FormControl>
                             </FormItem>
@@ -158,7 +177,7 @@ function LoginForm() {
                     />
                     <Button 
                         type="submit" 
-                        className="w-full rounded-xl py-6 bg-[#e64560] mt-5 cursor-pointer"
+                        className="w-full rounded-xl py-6 bg-[#e64560] hover:bg-[#E64560]/90 cursor-pointer"
                         disabled={isLoading}>
                         {isLoading ? (
                             <LoadingIcon />

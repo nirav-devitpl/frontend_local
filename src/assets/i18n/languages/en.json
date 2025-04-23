@@ -2,6 +2,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
     "CHANNEL_MANAGER": "Channel Manager",
+    "ROLE_MANAGER": "Roles",
     "BOOKING_MANAGER": "Booking Manager",
     "INVENTORY": "Inventory",
     "DATA_MANAGEMENT": "Data Management",
@@ -22,13 +23,18 @@
     "NEXT": "Next",
     "ADD_CHANNEL": "Add Channel",
     "EDIT_CHANNEL": "Edit Channel",
+    "ADD_ROLE": "Add new role",
+    "EDIT_ROLE": "Edit Role",
     "SAVE": "Save",
     "CREATE": "Create",
     "CLEAR_SELECTION": "Clear Selection",
     "CONFIGURATION": "Configuration"
   },
   "LABEL": {
-    "CHANNEL_TYPE": "Channel Type"
+    "CHANNEL_TYPE": "Channel Type",
+    "ROLE_TYPE": "Role Type",
+    "PERMISSIONS": "Permissions",
+    "FEATURES": "Features"
   },
   "FILTER": {
     "INBOUND": "Inbound",
@@ -46,13 +52,15 @@
     "PASSWORD": "Password",
     "CLIENT_CODE": "Client Code",
     "LINK": "Link",
-    "SUCCESS_MESSAGE": "Channel saved successfully"
+    "SUCCESS_MESSAGE": "Channel saved successfully",
+    "ROLE_SUCCESS_MESSAGE": "Role saved successfully"
   },
   "MODAL": {
     "PASSWORD_CHANGE_CONFIRMATION": "Are you sure you want to change the password?",
     "DEACTIVATE_CONFIRMATION": "Are you sure you want to deactivate this channel?",
     "ACTIVATE_CONFIRMATION": "Are you sure you want to activate this channel?",
     "DELETE_CONFIRMATION": "Are you sure you want to activate this channel?",
+    "DELETE_CONFIRMATION_ROLE": "Are you sure you want to activate this role?",
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel",
     "CONFIRM_DEACTIVATE": "Yes, Deactivate",
@@ -91,7 +99,7 @@
       "FORGOT_PASSWORD": "Forgot password?"
     },
     "BUTTONS": {
-      "LOGIN": "Log In"
+      "LOGIN": "Continue"
     },
     "VALIDATION": {
       "EMAIL_REQUIRED": "Email is required.",
@@ -118,7 +126,7 @@
       "EMAIL": "What's your email?"
     },
     "BUTTONS": {
-      "LOGIN": "Continue",
+      "CONTINUE": "Continue",
       "VERIFY": "Verify",
       "RESEND_CODE": "Resend Code"
     },
@@ -131,7 +139,8 @@
       "ERROR_MESSAGE": "Something went wrong. Please try again."
     },
     "SUCCESS": {
-      "FORGOT_PASSWORD_SUCCESS": "Password reset link sent to your email!"
+      "FORGOT_PASSWORD_SUCCESS": "Password reset link sent to your email!",
+      "LOGIN_SUCCESS": "You have successfully logged in!"
     },
     "TERMS":{
       "DESCRIPTION": "By continuing you agree to our",
@@ -144,5 +153,35 @@
       "SUPPORT_MESSAGE": "Can't access to your email?",
       "CONTACT_SUPPORT": "Contact Support"
     }
+  },
+  "RESET_PASSWORD_FORM": {
+    "TITLE": "Reset your Password",
+    "DESCRIPTION": "Please enter your new password",
+    "PLACEHOLDERS": {
+      "NEW_PASSWORD": "New Password",
+      "CONFIRM_PASSWORD": "Confirm Password"
+    },
+    "BUTTONS": {
+      "SUBMIT": "Change password"
+    },
+    "VALIDATION": {
+      "NEW_PASSWORD_REQUIRED": "New Password is required",
+      "CONFIRM_PASSWORD_REQUIRED": "Confirm Password is required",
+      "PASSWORD_MIN_LENGTH": "Password must be at least 8 characters long",
+      "PASSWORD_MAX_LENGTH": "Password must not exceed 20 characters",
+      "PASSWORD_COMPLEXITY": "Your password must have at least 1 uppercase, lowercase, digit, and special character",
+      "PASSWORD_MISMATCH": "Passwords do not match"
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Password reset successfully!"
+    }
+  },
+  "PASSWORD_METER": {
+    "WEAK_PASSWORD": "Bad Job! Your password is weak.",
+    "MEDIUM_PASSWORD": "Not bad but could be better! Your password is average.",
+    "STRONG_PASSWORD": "Great Job! Your password is strong."
   }
 }

@@ -9,6 +9,7 @@ import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageChange } from "./language-change"; // Import the LanguageChange component
+import LogoutButton from "./logout";
 
 /**
  * @interface SidebarProps
@@ -60,11 +61,12 @@ export default function Sidebar({
       )}
     >
       {/* Overlay in mobile */}
-      <div
+      <button
         onClick={() => setNavOpened(false)}
         className={`absolute inset-0 transition-[opacity] delay-100 duration-700 ${
           navOpened ? "h-svh opacity-50" : "h-0 opacity-0"
         } w-full bg-black md:hidden`}
+        aria-label="Close navigation overlay"
       />
 
       <Layout>
@@ -121,7 +123,7 @@ export default function Sidebar({
           onClick={() => setIsCollapsed((prev) => !prev)}
           size="icon"
           variant="outline"
-          className="absolute -right-3 top-4 hidden rounded-full md:inline-flex h-6 w-6"
+          className="absolute -right-3 top-4 hidden rounded-full md:inline-flex h-6 w-6 cursor-pointer hover:bg-[#E64560]/90"
         >
           <ArrowLeft
             className={`size-5 ${isCollapsed ? "rotate-180" : ""}`}
@@ -129,10 +131,9 @@ export default function Sidebar({
           />
         </Button>
 
-        {/* Language Switcher at the bottom */}
-        <div className="py-3 items-center flex justify-center">
-          <LanguageChange />
-        </div>
+        {/* Language Switcher and Logout Button at the bottom */}
+        <LogoutButton isCollapsed={isCollapsed}  />        
+        <LanguageChange className="bg-[#e64560] hover:bg-[#E64560]/90"/>
       </Layout>
     </aside>
   );

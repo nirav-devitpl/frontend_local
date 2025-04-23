@@ -26,8 +26,8 @@ export default function useSidelinks() {
       icon: <IconCalendarDue size={20} />,
     },
     {
-      title: t("SIDEBAR.BOOKING_MANAGER"),
-      href: "/booking-manager",
+      title: t("SIDEBAR.ROLE_MANAGER"),
+      href: "/roles",
       label: "",
       icon: <IconCalendar size={20} />,
     },
