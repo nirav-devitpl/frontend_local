@@ -26,7 +26,7 @@ function RoleAddEditPage() {
         <div className="flex items-center space-x-2">
           <button
             className="font-poppins font-normal text-sm leading-5 tracking-normal text-[#e64560] bg-transparent border-none cursor-pointer"
-            onClick={() => navigate('/role-manager')}
+            onClick={() => navigate('/roles')}
           >
             {t('SIDEBAR.ROLE_MANAGER')}
           </button>

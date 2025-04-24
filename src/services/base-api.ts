@@ -10,7 +10,7 @@ export const baseApi = createApi({
       header.append("Accept-Language", `${localStorage.getItem("i18nextLng")}`);
     },
   }),
-  tagTypes: ['CHANNEL'],
+  tagTypes: ['CHANNEL', 'ROLES'],
   endpoints: () => ({}),
 });
 

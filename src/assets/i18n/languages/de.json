@@ -2,12 +2,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Instrumententafel",
     "CHANNEL_MANAGER": "Kanalmanager",
-    "ROLE_MANAGER": "Rollen",
-    "BOOKING_MANAGER": "Buchungsmanager",
-    "INVENTORY": "Inventar",
-    "DATA_MANAGEMENT": "Datenverwaltung",
-    "CATEGORIES": "Kategorien",
-    "CUSTOMER": "Kunde"
+    "ROLE_MANAGER": "Rollen"
   },
   "PLACEHOLDER": {
     "SEARCH": "Suche",
@@ -87,7 +82,8 @@
     "PASSWORD_MAX_LENGTH": "Das Passwort darf nicht länger als 12 Zeichen sein.",
     "PASSWORD_COMPLEXITY": "Ihr Passwort muss mindestens 1 Großbuchstaben, Kleinbuchstaben, Ziffer und Sonderzeichen enthalten.",
     "CLIENT_CODE_REQUIRED": "Kundencode ist erforderlich.",
-    "INVALID_CLIENT_CODE": "Ungültiger Kundencode."
+    "INVALID_CLIENT_CODE": "Ungültiger Kundencode.",
+    "ROLE_NAME_REQUIRED": "Name ist erforderlich."
   },  
   "LOGIN_FORM": {
     "TITLE": "Willkommen zurück",

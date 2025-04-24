@@ -90,7 +90,7 @@ function RoleListingPage({...props}) {
           ) : (
               <DataTableServer
                 columns={columns}
-                data={data?.data ?? []}
+                data={data ?? []}
                 setColumnFilters={setColumnFilters}
                 setPagination={setPagination}
                 setSorting={setSorting}

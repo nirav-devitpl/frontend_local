@@ -12,28 +12,28 @@ export default function useColumns(
 
     //Datatable columns
     const columns: ColumnDef<any>[] = [
+        // {
+        //     accessorKey: 'code',
+        //     id: 'code',
+        //     enableColumnFilter: false,
+        //     header: ({ column }) => {
+        //         return (
+        //             <Button
+        //                 variant="ghost"
+        //                 className="pl-0"
+        //                 onClick={() =>
+        //                     column.toggleSorting(column.getIsSorted() === 'asc')
+        //                 }
+        //             >
+        //                 Code
+        //                 <ArrowUpDown className="ml-2 h-4 w-4" />
+        //             </Button>
+        //         );
+        //     },
+        // },
         {
-            accessorKey: 'code',
-            id: 'code',
-            enableColumnFilter: false,
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        className="pl-0"
-                        onClick={() =>
-                            column.toggleSorting(column.getIsSorted() === 'asc')
-                        }
-                    >
-                        Code
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                    </Button>
-                );
-            },
-        },
-        {
-            accessorKey: 'role_name',
-            id: 'role_name',
+            accessorKey: 'name',
+            id: 'name',
             enableColumnFilter: false,
             header: ({ column }) => {
                 return (
@@ -50,44 +50,44 @@ export default function useColumns(
                 );
             },
         },
-        {
-            accessorKey: 'in_use',
-            id: 'in_use',
-            enableColumnFilter: false,
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        className="pl-0"
-                        onClick={() =>
-                            column.toggleSorting(column.getIsSorted() === 'asc')
-                        }
-                    >
-                        In use
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                    </Button>
-                );
-            },
-        },
-        {
-            accessorKey: 'last_changed',
-            id: 'last_changed',
-            enableColumnFilter: false,
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        className="pl-0"
-                        onClick={() =>
-                            column.toggleSorting(column.getIsSorted() === 'asc')
-                        }
-                    >
-                        Code
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                    </Button>
-                );
-            },
-        },
+        // {
+        //     accessorKey: 'in_use',
+        //     id: 'in_use',
+        //     enableColumnFilter: false,
+        //     header: ({ column }) => {
+        //         return (
+        //             <Button
+        //                 variant="ghost"
+        //                 className="pl-0"
+        //                 onClick={() =>
+        //                     column.toggleSorting(column.getIsSorted() === 'asc')
+        //                 }
+        //             >
+        //                 In use
+        //                 <ArrowUpDown className="ml-2 h-4 w-4" />
+        //             </Button>
+        //         );
+        //     },
+        // },
+        // {
+        //     accessorKey: 'last_changed',
+        //     id: 'last_changed',
+        //     enableColumnFilter: false,
+        //     header: ({ column }) => {
+        //         return (
+        //             <Button
+        //                 variant="ghost"
+        //                 className="pl-0"
+        //                 onClick={() =>
+        //                     column.toggleSorting(column.getIsSorted() === 'asc')
+        //                 }
+        //             >
+        //                 Code
+        //                 <ArrowUpDown className="ml-2 h-4 w-4" />
+        //             </Button>
+        //         );
+        //     },
+        // },
         {
             accessorKey: 'actions',
             header: 'Actions',

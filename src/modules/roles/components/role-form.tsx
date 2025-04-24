@@ -3,13 +3,13 @@ import showToast from '@/components/common/toast';
 import { CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'; // Assuming you have a Table component
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'; 
 import { cn } from '@/lib/utils';
 import { RoleFormData } from '@/models/role';
 import { useCreateRoleMutation, useGetRoleByIdQuery, useUpdateRoleMutation } from '@/services/roles';
 import { getRoleSchema } from '@/validation-schema/roles';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckboxItem } from '@radix-ui/react-dropdown-menu';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,14 @@ function RoleForm({
   const { data: role } = useGetRoleByIdQuery(id, { skip: !id });
   const [updateRole] = useUpdateRoleMutation();
 
-  const schema = getRoleSchema();
+  const schema = getRoleSchema().extend({
+    permissions: z.array(
+      z.record(
+        z.string().toLowerCase(),
+        z.boolean()
+      )
+    ),
+  });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -84,7 +91,6 @@ function RoleForm({
     { feature: 'Module 1', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
     { feature: 'Module 2', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
     { feature: 'Module 3', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
-    // Add more modules as needed
   ];
 
   return (
@@ -118,25 +124,28 @@ function RoleForm({
         />
 
         {/* Permissions Field */}
-        <CardContent className="mt-4 mx-6 p-4 border border-gray-200 rounded-lg space-y-6">
+        <CardContent className="mt-4 mx-6 p-4 border border-gray-200 rounded-lg space-y-0">
           <FormLabel className="text-lg font-semibold">{t('LABEL.PERMISSIONS')}</FormLabel>
           <Table className="w-full">
             <TableHeader>
-              <TableRow>
-                <TableHead>{t('LABEL.FEATURES')}</TableHead>
-                <TableHead colSpan={5}>{t('LABEL.PERMISSIONS')}</TableHead>
+              <TableRow className="border-none">
+                <TableCell className="w-1/6 font-poppins font-medium text-base leading-6 tracking-normal">{t('LABEL.FEATURES')}</TableCell>
+                <TableCell className="font-poppins font-medium text-base leading-6 tracking-normal" colSpan={5}>{t('LABEL.PERMISSIONS')}</TableCell>
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {permissions.map((module) => (
-                <TableRow key={module.feature}>
+            <TableBody> 
+              {permissions.map((module, index) => (
+                <TableRow key={module.feature} className="border-none">
                   <TableCell>{module.feature}</TableCell>
                   {module.permissions.map((permission) => (
-                    <TableCell key={`${module.feature}-${permission}`} className="text-center">
-                      <checkbox
-                        className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                        checked="checked"
+                    <TableCell key={`${module.feature}-${permission}`} className="w-1/6">
+                      <label className="flex items-center cursor-pointer">
+                      <Checkbox
+                      {...form.register(`permissions.${index}.${permission.toLowerCase()}`)}
+                      className="text-[#E64560] border-[#E64560] border-2 rounded focus:ring-[#E64560] w-5 h-5 cursor-pointer"
                       />
+                      <span className="text-sm text-gray-700 pl-2">{permission}</span>
+                      </label>
                     </TableCell>
                   ))}
                 </TableRow>

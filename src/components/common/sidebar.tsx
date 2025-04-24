@@ -77,7 +77,7 @@ export default function Sidebar({
               className={`${isCollapsed ? "visible w-auto" : "invisible w-0"}`}
             >
               <img
-                src="/category-small.png"
+                src="/roomeo-small.png"
                 alt="Deals"
                 className="mb-1 max-w-full w-10"
               />
@@ -88,7 +88,7 @@ export default function Sidebar({
               }`}
             >
               <Link to={"/"}>
-                <img src="/category.png" alt="Deals" className="mb-1 h-[29px]" />
+                <img src="/roomeo.png" alt="Deals" className="mb-1 h-[29px]" />
               </Link>
             </div>
           </div>

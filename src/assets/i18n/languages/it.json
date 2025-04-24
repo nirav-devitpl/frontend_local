@@ -2,12 +2,7 @@
   "SIDEBAR": {
     "DASHBOARD": "Cruscotto",
     "CHANNEL_MANAGER": "Gestore Canali",
-    "ROLE_MANAGER": "Ruoli",
-    "BOOKING_MANAGER": "Gestore Prenotazioni",
-    "INVENTORY": "Inventario",
-    "DATA_MANAGEMENT": "Gestione Dati",
-    "CATEGORIES": "Categorie",
-    "CUSTOMER": "Cliente"
+    "ROLE_MANAGER": "Ruoli"
   },
   "PLACEHOLDER": {
     "SEARCH": "Cerca",
@@ -87,7 +82,8 @@
     "PASSWORD_MAX_LENGTH": "La password non deve superare i 12 caratteri.",
     "PASSWORD_COMPLEXITY": "La password deve contenere almeno 1 maiuscola, minuscola, cifra e carattere speciale.",
     "CLIENT_CODE_REQUIRED": "Il codice cliente è obbligatorio.",
-    "INVALID_CLIENT_CODE": "Codice cliente non valido."
+    "INVALID_CLIENT_CODE": "Codice cliente non valido.",
+    "ROLE_NAME_REQUIRED": "Il nome è obbligatorio."
   },  
   "LOGIN_FORM": {
     "TITLE": "Bentornato",

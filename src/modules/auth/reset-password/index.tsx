@@ -12,7 +12,7 @@ function ResetPasswordPage() {
       <div className="relative flex min-h-screen bg-white">
         <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 bg-white shadow-md h-[80px]">
           <div className="flex items-center h-full">
-            <img src="/category.png" alt="Logo" className="ml-[20px]" />
+            <img src="/roomeo.png" alt="Logo" className="ml-[20px]" />
           </div>
           <div className="flex items-center space-x-2">
             <LanguageChange />
