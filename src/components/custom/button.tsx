@@ -26,6 +26,7 @@ const buttonVariants = cva(
           "w-[120px] h-[36px] gap-2 rounded-md border p-2 border-gray-200 bg-white",
         action: "rounded-full",
         icon: "bg-transparent text-primary",
+        custom: "bg-[#e64560] text-white shadow-xs hover:bg-[#e64560]/90 shadow",
       },
       size: {
         default: "h-9 px-4 py-2",

@@ -1,6 +1,8 @@
 import { getToken } from "@/lib/utils";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+console.log(getToken());
+
 export const baseApi = createApi({
   reducerPath: "commentsApi",
   baseQuery: fetchBaseQuery({

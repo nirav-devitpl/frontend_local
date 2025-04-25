@@ -12,9 +12,18 @@ const rolesApi = baseApi.injectEndpoints({
       },
       providesTags: ['ROLES'],
     }),
+    fetchPermissions: builder.query({
+      query: () => {
+        return {
+          url: `roles/resources`,
+          method: 'GET',
+        };
+      },
+      providesTags: ['ROLES'],
+    }),
     getRoleById: builder.query({
       query: (id) => ({
-        url: `roles/${id}`,
+        url: `roles/permissions/${id}`,
         method: 'GET',
       }),
       providesTags: ['ROLES'],
@@ -54,6 +63,7 @@ const rolesApi = baseApi.injectEndpoints({
  
 export const {
   useGetRolesQuery,
+  useFetchPermissionsQuery,
   useGetRoleByIdQuery,
   useCreateRoleMutation,
   useUpdateRoleMutation,

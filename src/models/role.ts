@@ -1,3 +1,3 @@
 export interface RoleFormData {
-  name: string;
+  role_name: string;
 }

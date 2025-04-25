@@ -15,6 +15,7 @@ import { useLoginMutation } from "@/services/auth";
 import showToast from "@/components/common/toast";
 import {HandIcon, LockIcon, EyeOff, Eye, LoadingIcon} from "@/components/common/icon";
 import { useNavigate } from "react-router-dom";
+import { Checkbox } from "@radix-ui/react-checkbox";
 
 /**
  * @memberof auth
@@ -40,8 +41,8 @@ function LoginForm() {
 
     const onSubmit = (data: z.infer<typeof loginSchema>) => {
         const payload = {
-            username: 'nirav.bhut',
-            password: data.password,
+            username: 'admin',
+            password: 'admin',
             //rememberMe: data.rememberMe,
         };
 
@@ -151,12 +152,12 @@ function LoginForm() {
                                     <div className="flex justify-between items-center">
                                         {/* Remember Me Checkbox */}
                                         <div className="flex items-center space-x-2">
-                                            <Input
-                                                type="checkbox"
+                                            <Checkbox
+                                                checked={!!field.value}
+                                                onCheckedChange={(checked) => field.onChange(checked)}                                            
                                                 id="rememberMe"
-                                                checked={field.value || false}
-                                                onChange={field.onChange}
-                                                className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                                                className="text-[#E64560] border-[#E64560] border-2 rounded cursor-pointer focus:ring-[#E64560] w-4 h-4
+                                                data-[state=checked]:bg-[#E64560] data-[state=checked]:border-[#E64560] focus-visible:ring-[#E64560]"
                                             />
                                             <label htmlFor="rememberMe" className="text-sm text-gray-700 cursor-pointer font-medium">
                                                 {t('LOGIN_FORM.LABELS.REMEMBER_ME')}

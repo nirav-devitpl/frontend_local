@@ -3,10 +3,10 @@ import showToast from '@/components/common/toast';
 import { CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'; 
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 import { RoleFormData } from '@/models/role';
-import { useCreateRoleMutation, useGetRoleByIdQuery, useUpdateRoleMutation } from '@/services/roles';
+import { useCreateRoleMutation, useGetRoleByIdQuery, useUpdateRoleMutation, useFetchPermissionsQuery } from '@/services/roles';
 import { getRoleSchema } from '@/validation-schema/roles';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 import { z } from 'zod';
+import { Label } from '@/components/ui/label';
 
 function RoleForm({
   setSubmitHandler,
@@ -28,6 +29,30 @@ function RoleForm({
   const [createRole] = useCreateRoleMutation();
   const { data: role } = useGetRoleByIdQuery(id, { skip: !id });
   const [updateRole] = useUpdateRoleMutation();
+  const { data: permissionsData } = useFetchPermissionsQuery({});
+
+  type Permission = {
+    feature: string;
+    id: string;
+    permissions: { id: string; name: string }[];
+  };
+
+  type PermissionScope = {
+    id: string;
+    name: string;
+  };
+
+  type PermissionResult = {
+    name: string;
+    _id: string;
+    scopes: PermissionScope[];
+  };
+
+  const permissions: Permission[] = permissionsData?.result?.map(({ name, _id, scopes }: PermissionResult) => ({
+    feature: name,
+    id: _id,
+    permissions: scopes.map(({ id, name }: PermissionScope) => ({ id, name })),
+  })) ?? [];
 
   const schema = getRoleSchema().extend({
     permissions: z.array(
@@ -42,7 +67,7 @@ function RoleForm({
     resolver: zodResolver(schema),
     defaultValues: {
       role_name: '',
-      permissions: [], // Default value for permissions
+      permissions: [],
     },
   });
 
@@ -51,15 +76,16 @@ function RoleForm({
   }, [form, setSubmitHandler]);
 
   const onSubmit = (data: z.infer<typeof schema>) => {
+    
     const payload = {
       ...data,
       ...(id && { id: parseInt(id) }),
     };
-
+    console.log('Form Data:', payload);
     const action = id ? updateRole : createRole;
     action({ ...payload })
       .unwrap()
-      .then((response: { status: string | number; message: string }) => {
+      .then((response) => {
         if (response?.status === 'success' || response?.status === 200 || response?.status === 201) {
           showToast(response?.message, 'success');
           navigate('/roles');
@@ -79,19 +105,13 @@ function RoleForm({
   }, [i18n.language]);
 
   useEffect(() => {
-    if (id && role) {
+    if (id && role?.result?.length) {
       const payload: RoleFormData = {
-        ...role.result,
+        role_name: role.result[0].name,
       };
-      form.reset(payload as any);
+      form.reset(payload);
     }
-  }, [id, role?.result, form]);
-
-  const permissions = [
-    { feature: 'Module 1', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
-    { feature: 'Module 2', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
-    { feature: 'Module 3', permissions: ['View', 'Update', 'Delete', 'Create', 'All'] },
-  ];
+  }, [id, role, form]);
 
   return (
     <Form {...form}>
@@ -129,23 +149,40 @@ function RoleForm({
           <Table className="w-full">
             <TableHeader>
               <TableRow className="border-none">
-                <TableCell className="w-1/6 font-poppins font-medium text-base leading-6 tracking-normal">{t('LABEL.FEATURES')}</TableCell>
-                <TableCell className="font-poppins font-medium text-base leading-6 tracking-normal" colSpan={5}>{t('LABEL.PERMISSIONS')}</TableCell>
+                <TableCell className="w-1/6 font-poppins font-medium text-base leading-6 tracking-normal">
+                  {t('LABEL.FEATURES')}
+                </TableCell>
+                <TableCell className="font-poppins font-medium text-base leading-6 tracking-normal" colSpan={5}>
+                  {t('LABEL.PERMISSIONS')}
+                </TableCell>
               </TableRow>
             </TableHeader>
-            <TableBody> 
-              {permissions.map((module, index) => (
-                <TableRow key={module.feature} className="border-none">
-                  <TableCell>{module.feature}</TableCell>
-                  {module.permissions.map((permission) => (
-                    <TableCell key={`${module.feature}-${permission}`} className="w-1/6">
-                      <label className="flex items-center cursor-pointer">
-                      <Checkbox
-                      {...form.register(`permissions.${index}.${permission.toLowerCase()}`)}
-                      className="text-[#E64560] border-[#E64560] border-2 rounded focus:ring-[#E64560] w-5 h-5 cursor-pointer"
+            <TableBody>
+              {permissions.map((permission) => (
+                <TableRow key={permission.id} className="border-none hover:bg-transparent">
+                  <TableCell className="font-poppins font-normal text-base leading-6 tracking-normal">
+                    {permission.feature}
+                  </TableCell>
+                  {permission.permissions.map((perm) => (
+                    <TableCell key={perm.id} className="w-1/6">
+                      <FormField
+                        control={form.control}
+                        name={`${permission.id}_${perm.id}`}
+                        render={({ field }) => (
+                          <Label className="flex items-center cursor-pointer w-3/8">
+                            <Checkbox
+                              checked={!!field.value}
+                              name={`${permission.id}_${perm.id}`}
+                              onCheckedChange={(checked) => field.onChange(checked)}
+                              className="text-[#E64560] border-[#E64560] border-2 rounded cursor-pointer focus:ring-[#E64560] w-5 h-5
+                              data-[state=checked]:bg-[#E64560] data-[state=checked]:border-[#E64560] focus-visible:ring-[#E64560]"
+                            />
+                            <span key={`${permission.id}_${perm.id}`} className="text-sm text-gray-700 pl-2">
+                              {perm.name}
+                            </span>
+                          </Label>
+                        )}
                       />
-                      <span className="text-sm text-gray-700 pl-2">{permission}</span>
-                      </label>
                     </TableCell>
                   ))}
                 </TableRow>

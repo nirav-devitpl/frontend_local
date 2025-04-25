@@ -53,7 +53,7 @@ function RolePage() {
         </div>
         <FilterPopOver roleProps={roleValues} t={t} handleFilterChangeProps={handleFilterChange} />
       </div>      
-      <div className="flex justify-end px-4 py-2 items-center h-[52px]">
+      <div className="flex justify-end px-4 items-center h-[52px]">
         <Button
           className="ml-2 flex items-right w-[160px] h-[40px] gap-2 rounded-[4px] bg-[#E64560] text-white cursor-pointer"
           variant="filter"

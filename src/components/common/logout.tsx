@@ -10,9 +10,8 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ isCollapsed }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // localStorage.clear();
-        // navigate('/auth/sign-in');
-        alert('asf');
+        localStorage.clear();
+        navigate('/auth/sign-in');
     };
 
     return (        

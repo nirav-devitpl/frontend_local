@@ -71,7 +71,7 @@ export default function Sidebar({
 
       <Layout>
         {/* Header */}
-        <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4 bg-inherit dark:bg-accent">
+        <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4 bg-inherit">
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
             <div
               className={`${isCollapsed ? "visible w-auto" : "invisible w-0"}`}

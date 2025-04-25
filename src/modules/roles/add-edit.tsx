@@ -1,5 +1,5 @@
 import { Button } from '@/components/custom/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import Loader from '@/components/common/loader';
 import RoleForm from './components/role-form';
 import { useNavigate, useParams } from 'react-router';
