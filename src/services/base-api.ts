@@ -1,8 +1,6 @@
 import { getToken } from "@/lib/utils";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-console.log(getToken());
-
 export const baseApi = createApi({
   reducerPath: "commentsApi",
   baseQuery: fetchBaseQuery({
@@ -14,6 +12,7 @@ export const baseApi = createApi({
   }),
   tagTypes: ['CHANNEL', 'ROLES'],
   endpoints: () => ({}),
+  keepUnusedDataFor: 0,
 });
 
 export const keyClockBaseApi = createApi({

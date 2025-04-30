@@ -14,7 +14,7 @@ function ForgotPasswordPage() {
           <img src="/roomeo.png" alt="Logo" className="ml-[20px]" />
         </div>
         <div className="flex items-center space-x-2">
-          <LanguageChange />
+          <LanguageChange isCollapsed={false} isHeader={true}/>
         </div>
       </div>
       <div className="flex flex-1 flex-col md:grid md:grid-cols-2">

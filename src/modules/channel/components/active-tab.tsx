@@ -1,4 +1,3 @@
-import Loader from '@/components/common/loader';
 import { useEffect, useState } from 'react';
 import useColumns from '../utils/use-columns';
 import { Card, CardContent } from '@/components/ui/card';
@@ -14,6 +13,7 @@ import {
 import DataTableServer from '@/components/common/data-table-server';
 import { ColumnFiltersState, SortingState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+import { IconLoader } from '@tabler/icons-react';
 
  
 /**
@@ -94,7 +94,7 @@ function ActiveChannelPage({...props}) {
       <Card>
         <CardContent className="px-4">
           {isLoading ? (
-            <Loader />
+            <IconLoader className="h-6 w-6 animate-spin text-[#e64560]" />
           ) : (
               <DataTableServer
                 columns={columns}

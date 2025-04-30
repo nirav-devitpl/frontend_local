@@ -1,17 +1,17 @@
 import { Button } from '@/components/ui/button';
 import { DialogClose, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { DeleteModalProps } from '@/models/delete-model';
+import { CopyModalProps } from '@/models/copy-model';
 import { t } from 'i18next';
 import { Trash2 } from 'lucide-react';
 
 
 /**
- * Delete data component
+ * Copy data component
  * @param message - Message to be displayed
- * @param handleDelete - Function to handle the delete
+ * @param handleCopy - Function to handle the copy
  * @returns 
  */
-const DeleteModal = ({ message, handleDelete }: DeleteModalProps) => {
+const CopyModal = ({ message, handleCopy }: CopyModalProps) => {
 
     return (
         <>
@@ -22,7 +22,6 @@ const DeleteModal = ({ message, handleDelete }: DeleteModalProps) => {
                             <Trash2 size={32} />
                         </div>
                     </div>
-
                 </DialogTitle>
             </DialogHeader>
             <div className='text-center text-sm text-gray-500 pb-3'>{message}</div>
@@ -30,10 +29,10 @@ const DeleteModal = ({ message, handleDelete }: DeleteModalProps) => {
                 <DialogClose asChild>
                     <Button variant="outline" className='w-1/2 cursor-pointer'>{t('MODAL.CANCEL')}</Button>
                 </DialogClose>
-                <Button variant="destructive" className='w-1/2 cursor-pointer' onClick={handleDelete}>{t('MODAL.CONFIRM_DELETE')}</Button>
+                <Button variant="destructive" className='w-1/2 cursor-pointer' onClick={handleCopy}>{t('MODAL.CONFIRM_COPY')}</Button>
             </DialogFooter>
         </>
     )
 }
 
-export default DeleteModal;
+export default CopyModal;

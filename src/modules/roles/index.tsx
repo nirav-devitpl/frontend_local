@@ -1,11 +1,10 @@
 import { Card } from '@/components/ui/card';
-import Loader from '@/components/common/loader';
 import { Suspense, lazy, useState } from 'react';
 import { Button } from '@/components/custom/button';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import FilterPopOver from './components/FilterPopOver';
 import { AddIcon, SearchIcon } from '@/components/common/icon';
+import { IconLoader } from '@tabler/icons-react';
 
 const RoleListingPage = lazy(() => import('./components/listing'));
 
@@ -17,16 +16,6 @@ function RolePage() {
     filterValue: '',
     searchValue: '',
   });
-
-  /**
-   * @method handleFilterChange
-   * @description Handles the filter change event and updates the filter value in the state.
-   * @param value - The selected filter value.
-   * @returns {void}
-   */
-  const handleFilterChange = (value: string) => {
-    setRoleValues((prev) => ({ ...prev, filterValue: value === 'clear' ? '' : value }));
-  };
 
   /**
    * @method handleSearchChange
@@ -51,7 +40,6 @@ function RolePage() {
             onChange={handleSearchChange} 
           />
         </div>
-        <FilterPopOver roleProps={roleValues} t={t} handleFilterChangeProps={handleFilterChange} />
       </div>      
       <div className="flex justify-end px-4 items-center h-[52px]">
         <Button
@@ -63,9 +51,13 @@ function RolePage() {
           {t('BUTTON.ADD_ROLE')}
         </Button>
       </div>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={
+        <div className="flex justify-center items-center h-[200px]">
+          <IconLoader className="h-6 w-6 animate-spin text-[#e64560]" />
+        </div>
+      }>
         <RoleListingPage filterValue={roleValues.filterValue} searchValue={roleValues.searchValue} />
-      </Suspense>      
+      </Suspense>
     </Card>
   );
 }

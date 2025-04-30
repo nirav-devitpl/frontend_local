@@ -49,7 +49,7 @@ export default function Sidebar({
     }
   }, [navOpened]);
 
-  const { t } = useTranslation();
+  useTranslation();
 
   return (
     <aside
@@ -133,7 +133,7 @@ export default function Sidebar({
 
         {/* Language Switcher and Logout Button at the bottom */}
         <LogoutButton isCollapsed={isCollapsed}  />        
-        <LanguageChange className="bg-[#e64560] hover:bg-[#E64560]/90"/>
+        <LanguageChange className="cursor-pointer" isCollapsed={isCollapsed}/>
       </Layout>
     </aside>
   );

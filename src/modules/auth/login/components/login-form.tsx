@@ -41,8 +41,8 @@ function LoginForm() {
 
     const onSubmit = (data: z.infer<typeof loginSchema>) => {
         const payload = {
-            username: 'admin',
-            password: 'admin',
+            username: data.email,
+            password: data.password,
             //rememberMe: data.rememberMe,
         };
 
@@ -52,7 +52,6 @@ function LoginForm() {
             if (response?.status === 'success' || response?.status === 200 || response?.status === 201) {
                 // Set localstorage for access and refresh tokens
                 const { access_token, refresh_token, expires_in } = response.result;
-                console.log(response);
                 localStorage.setItem('token', access_token);
                 localStorage.setItem('refresh_token', refresh_token);
                 localStorage.setItem('expires_in', expires_in.toString());

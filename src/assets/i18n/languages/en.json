@@ -27,9 +27,7 @@
   },
   "LABEL": {
     "CHANNEL_TYPE": "Channel Type",
-    "ROLE_TYPE": "Role Type",
-    "PERMISSIONS": "Permissions",
-    "FEATURES": "Features"
+    "ROLE_TYPE": "Role Type"
   },
   "FILTER": {
     "INBOUND": "Inbound",
@@ -55,12 +53,15 @@
     "DEACTIVATE_CONFIRMATION": "Are you sure you want to deactivate this channel?",
     "ACTIVATE_CONFIRMATION": "Are you sure you want to activate this channel?",
     "DELETE_CONFIRMATION": "Are you sure you want to activate this channel?",
-    "DELETE_CONFIRMATION_ROLE": "Are you sure you want to activate this role?",
+    "DELETE_CONFIRMATION_ROLE": "Are you sure you want to delete this role?",
+    "COPY_CONFIRMATION_ROLE": "Are you sure you want to copy this role?",
     "CONFIRM": "Confirm",
     "CANCEL": "Cancel",
     "CONFIRM_DEACTIVATE": "Yes, Deactivate",
     "CONFIRM_ACTIVATE": "Yes, Activate",
     "CONFIRM_DELETE": "Yes, Delete",
+    "CONFIRM_COPY": "Yes, Copy",
+    "CONFIRM_SIGNOUT": "Yes, Signout",
     "CONFIRM_PASSWORD_CHANGE": "Yes, Change Password"
   },
   "TABLE": {
@@ -179,5 +180,30 @@
     "WEAK_PASSWORD": "Bad Job! Your password is weak.",
     "MEDIUM_PASSWORD": "Not bad but could be better! Your password is average.",
     "STRONG_PASSWORD": "Great Job! Your password is strong."
+  },
+  "ROLE_FORM": {
+    "TITLE": "Reset your Password",
+    "DESCRIPTION": "Please enter your new password",
+    "PLACEHOLDER": {
+      "NAME": "Name"
+    },
+    "LABEL": {
+      "NAME": "Name",
+      "PERMISSIONS": "Permissions",
+      "FEATURES": "Features"    
+    },
+    "BUTTONS": {
+      "ADD_ROLE": "Add new role",
+      "EDIT_ROLE": "Edit role"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "Name is required."
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Password reset successfully!"
+    }
   }
 }

@@ -1,10 +1,10 @@
 import { Button } from '@/components/custom/button';
 import { Card } from '@/components/ui/card';
-import Loader from '@/components/common/loader';
 import RoleForm from './components/role-form';
 import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next'; 
+import { IconLoader } from '@tabler/icons-react';
 
 function RoleAddEditPage() {
   const { t } = useTranslation();
@@ -57,7 +57,7 @@ function RoleAddEditPage() {
         <div className="space-x-5">
           <Card>
             {isDataLoading ? (
-                <Loader />
+                <IconLoader className="h-6 w-6 animate-spin text-[#e64560]" />
               ) : (
                 <RoleForm setSubmitHandler={setFormSubmitHandler} />
             )}

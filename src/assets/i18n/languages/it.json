@@ -27,9 +27,7 @@
   },
   "LABEL": {
     "CHANNEL_TYPE": "Tipo di Canale",
-    "ROLE_TYPE": "Tipo di Ruolo",
-    "PERMISSIONS": "Permessi",
-    "FEATURES": "Funzionalità"
+    "ROLE_TYPE": "Tipo di Ruolo"
   } ,
   "FILTER": {
     "INBOUND": "In entrata",
@@ -56,11 +54,14 @@
     "ACTIVATE_CONFIRMATION": "Siete sicuri di voler attivare questo canale?",
     "DELETE_CONFIRMATION": "Siete sicuri di voler eliminare questo canale?",
     "DELETE_CONFIRMATION_ROLE": "Siete sicuri di voler eliminare questo ruolo?",
+    "COPY_CONFIRMATION_ROLE": "Sei sicuro di voler copiare questo ruolo?",
     "CONFIRM": "Conferma",
     "CANCEL": "Annulla",
     "CONFIRM_DEACTIVATE": "Si, Disattiva",
     "CONFIRM_ACTIVATE": "Si, Attiva",
     "CONFIRM_DELETE": "Si, Elimina",
+    "CONFIRM_COPY": "Si, Copia",
+    "CONFIRM_SIGNOUT": "Si, Esci",
     "CONFIRM_PASSWORD_CHANGE": "Si, Cambia Password"
   },
   "TABLE": {
@@ -181,5 +182,30 @@
     "WEAK_PASSWORD": "Pessimo lavoro! La tua password è debole.",
     "MEDIUM_PASSWORD": "Non male, ma potrebbe essere migliore! La tua password è media.",
     "STRONG_PASSWORD": "Ottimo lavoro! La tua password è forte."
+  },
+  "ROLE_FORM": {
+    "TITLE": "Reset your Password",
+    "DESCRIPTION": "Please enter your new password",
+    "PLACEHOLDER": {
+      "NAME": "Nome"
+    },
+    "LABEL": {
+      "NAME": "Nome",
+      "PERMISSIONS": "Permessi",
+      "FEATURES": "Funzionalità"
+    },
+    "BUTTONS": {
+      "ADD_ROLE": "Aggiungi nuovo ruolo",
+      "EDIT_ROLE": "Modifica ruolo"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "Name is required."
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Password reset successfully!"
+    }
   }
 }

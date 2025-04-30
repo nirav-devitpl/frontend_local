@@ -1,6 +1,5 @@
 import { Button } from '@/components/custom/button';
 import { Card, CardContent } from '@/components/ui/card';
-import Loader from '@/components/common/loader';
 import ChannelForm from './components/channel-form';
 import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
@@ -10,6 +9,7 @@ import useColumns from './utils/use-alpine-columns';
 //import { useGetAlpinebitsQuery } from '@/services/alpinebits';
 import { SAMPLE_DATA } from './utils/sample-data';
 import { ColumnFiltersState, SortingState } from '@tanstack/react-table';
+import { IconLoader } from '@tabler/icons-react';
 
 function ChannelAddEditPage() {
   const { t } = useTranslation();
@@ -99,7 +99,7 @@ function ChannelAddEditPage() {
           <Card>
             <CardContent className="mt-0 mx-6 p-4 border border-gray-200 rounded-lg space-y-6">
               {isDataLoading ? (
-                <Loader />
+                <IconLoader className="ml-2 h-4 w-4 animate-spin text-[#e64560]" />
               ) : (
                 <ChannelForm setSubmitHandler={setFormSubmitHandler} />
               )}
@@ -112,7 +112,7 @@ function ChannelAddEditPage() {
             Sync Logs
           </div>
           {isDataLoading ? (
-            <Loader />
+            <IconLoader className="ml-2 h-4 w-4 animate-spin text-[#e64560]" />
           ) : (
               <DataTableServer
                 columns={columns}

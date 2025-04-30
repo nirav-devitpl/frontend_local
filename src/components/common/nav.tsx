@@ -112,14 +112,20 @@ function NavLink({
       to={href}
       onClick={closeNav}
       className={cn(
-        buttonVariants({ variant: checkActiveNav(href, subLink) ? "custom" : "ghost", size: "sm"}),
-        "h-12 justify-start text-wrap rounded-none px-6 text-inherit",
-        subLink && "h-10 w-full px-2",
-        "hover:bg-[#e64560] hover:text-white focus:bg-[#e64560] focus:text-white active:bg-[#e64560] active:text-white"
+        buttonVariants({ variant: checkActiveNav(href, subLink) ? "sidebar_active" : "sidebar", size: "sm"}),
+        "h-10 justify-start text-wrap rounded-none px-5 font-poppins font-normal text-base leading-6 tracking-normal",
+        subLink && "h-10 w-full",
       )}
       aria-current={checkActiveNav(href) ? "page" : undefined}
     > 
-      <div className="mr-2">{icon}</div>
+      <div
+        className={cn(
+          "mr-2  p-1",
+          checkActiveNav(href, subLink) ? "text-white bg-[#e64560] rounded-sm" : undefined
+        )}
+      >
+        {icon}
+      </div>
       {title}
       {label && (
       <div className="ml-2 rounded-lg bg-primary px-1 text-[0.625rem] text-primary-foreground">
@@ -182,7 +188,7 @@ function NavLinkIcon({ title, icon, label, href }: NavLinkProps) {
           to={href}
           className={cn(
             buttonVariants({
-              variant: checkActiveNav(href) ? "accent" : "ghost",
+              variant: checkActiveNav(href) ? "sidebar_active" : "sidebar",
               size: "icon",
             }),
             "h-12 w-12"

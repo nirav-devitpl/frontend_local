@@ -1,118 +1,147 @@
-import i18n from '@/assets/i18n';
 import showToast from '@/components/common/toast';
 import { CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table';
-import { cn } from '@/lib/utils';
-import { RoleFormData } from '@/models/role';
-import { useCreateRoleMutation, useGetRoleByIdQuery, useUpdateRoleMutation, useFetchPermissionsQuery } from '@/services/roles';
+
+import { useCreateRoleMutation, useGetRoleByIdQuery, useGetPermissionByIdQuery, useUpdateRoleMutation, useFetchPermissionsQuery } from '@/services/roles';
 import { getRoleSchema } from '@/validation-schema/roles';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 import { z } from 'zod';
-import { Label } from '@/components/ui/label';
+import { IconLoader } from '@tabler/icons-react';
+import { transformRoleData, createPermissionsPayload } from '../utils/role-utils';
+import PermissionsTable from './PermissionTable';
 
 function RoleForm({
   setSubmitHandler,
 }: Readonly<{
   setSubmitHandler: (submitHandler: () => void) => void;
 }>) {
-  const { t } = useTranslation();
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { t } = useTranslation(); // Translation hook for internationalization
+  const { id } = useParams(); // Get the role ID from the URL parameters
+  const navigate = useNavigate(); // Navigation hook for programmatic routing
 
+  // API hooks for CRUD operations
   const [createRole] = useCreateRoleMutation();
-  const { data: role } = useGetRoleByIdQuery(id, { skip: !id });
+  const { data: roleRawData, isLoading: isRoleLoading } = useGetRoleByIdQuery(id, { skip: !id });
+  const { data: rolePermissionRawData, isLoading: isPermissionLoading } = useGetPermissionByIdQuery(id, { skip: !id });
   const [updateRole] = useUpdateRoleMutation();
-  const { data: permissionsData } = useFetchPermissionsQuery({});
+  const { data: permissionsData, isLoading: isPermissionsDataLoading } = useFetchPermissionsQuery({});
 
-  type Permission = {
-    feature: string;
-    id: string;
-    permissions: { id: string; name: string }[];
-  };
+  // State and refs for managing permissions
+  const [availablePermissions, setAvailablePermissions] = useState([]); // State for available permissions
+  const availablePermissionsRef = useRef([]); // Ref for available permissions to avoid re-renders
+  const rolePermissionRawDataRef = useRef<any>({}); // Ref for role permissions data
 
-  type PermissionScope = {
-    id: string;
-    name: string;
-  };
+  // Combined loading state
+  const isLoading = isRoleLoading || isPermissionLoading || isPermissionsDataLoading;
 
-  type PermissionResult = {
-    name: string;
-    _id: string;
-    scopes: PermissionScope[];
-  };
-
-  const permissions: Permission[] = permissionsData?.result?.map(({ name, _id, scopes }: PermissionResult) => ({
-    feature: name,
-    id: _id,
-    permissions: scopes.map(({ id, name }: PermissionScope) => ({ id, name })),
-  })) ?? [];
-
-  const schema = getRoleSchema().extend({
-    permissions: z.array(
-      z.record(
-        z.string().toLowerCase(),
-        z.boolean()
-      )
-    ),
-  });
-
+  // Form schema and initialization
+  const schema = getRoleSchema({ id });
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
       role_name: '',
-      permissions: [],
+      permissions: {},
     },
   });
 
+  // Set the submit handler for the parent component
   useEffect(() => {
     setSubmitHandler(() => form.handleSubmit(onSubmit));
   }, [form, setSubmitHandler]);
 
+  // Effect to populate form data when editing an existing role
+  useEffect(() => {
+    if (id && roleRawData?.result?.length && rolePermissionRawData?.result) {
+      const role = roleRawData.result[0]; // Extract role data
+      const permissionsData = transformRoleData(rolePermissionRawData); // Transform permissions data
+
+      rolePermissionRawDataRef.current = permissionsData; // Update the ref with transformed data
+
+      // Format permissions for the form
+      const formattedPermissions = Object.entries(permissionsData).reduce((acc, [resourceId, { scopes }]) => {
+        acc[resourceId] = scopes;
+        return acc;
+      }, {} as Record<string, string[]>);
+
+      // Reset the form with fetched data
+      form.reset({
+        role_name: role.name,
+        permissions: formattedPermissions,
+      });
+    } else {
+      // Reset the form with default values if no data is available
+      form.reset({
+        role_name: '',
+        permissions: {},
+      });
+    }
+  }, [id, roleRawData, rolePermissionRawData, form]);
+
+  // Effect to fetch and set available permissions
+  useEffect(() => {
+    if (permissionsData?.result?.length) {
+      const availablePermissions = permissionsData.result.map(({ name, _id, scopes }: { name: string; _id: string; scopes: { id: string; name: string }[] }) => ({
+        feature: name,
+        id: _id,
+        permissions: scopes.map(({ id, name }) => ({ id, name })),
+      }));
+      availablePermissionsRef.current = availablePermissions; // Update the ref
+      setAvailablePermissions(availablePermissions); // Update the state
+    }
+  }, [permissionsData]);
+
+  // Submit handler for the form
   const onSubmit = (data: z.infer<typeof schema>) => {
-    
+    // Create the permissions payload
+    const permissionsPayload = createPermissionsPayload(
+      data,
+      availablePermissionsRef,
+      rolePermissionRawDataRef,
+      id
+    );
+
+    // Construct the payload for the API
     const payload = {
-      ...data,
-      ...(id && { id: parseInt(id) }),
+      name: data.role_name,
+      ...(!id && { description: data.role_name }), // Add description for new roles
+      permissions: permissionsPayload,
+      ...(id && { id: id.toString() }), // Add ID for existing roles
     };
-    console.log('Form Data:', payload);
+
+    // Determine the action (create or update)
     const action = id ? updateRole : createRole;
-    action({ ...payload })
+    action(payload)
       .unwrap()
       .then((response) => {
         if (response?.status === 'success' || response?.status === 200 || response?.status === 201) {
-          showToast(response?.message, 'success');
-          navigate('/roles');
+          showToast(response?.message, 'success'); // Show success toast
+          navigate('/roles'); // Navigate to roles page
         } else {
-          showToast(response?.message, 'error');
+          showToast(response?.message, 'error'); // Show error toast
         }
       })
       .catch((err) => {
         const errorMessage = err?.data?.message ?? 'An unexpected error occurred';
-        console.error('Error:', err);
-        showToast(errorMessage, 'error');
+        console.error('Error:', err); // Log the error
+        showToast(errorMessage, 'error'); // Show error toast
       });
   };
 
-  useEffect(() => {
-    form.reset();
-  }, [i18n.language]);
+  // Render a loading spinner if data is still loading
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <IconLoader className="ml-2 h-4 w-4 animate-spin text-[#e64560]" />
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    if (id && role?.result?.length) {
-      const payload: RoleFormData = {
-        role_name: role.result[0].name,
-      };
-      form.reset(payload);
-    }
-  }, [id, role, form]);
-
+  // Render the form
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -120,75 +149,25 @@ function RoleForm({
         <FormField
           control={form.control}
           name="role_name"
-          render={({ field: formField, fieldState }) => (
-            <CardContent className="mt-0 mx-6 p-4 border border-gray-200 rounded-lg space-y-6">
-              <FormItem>
-                <FormLabel>
-                  {t('FORM.NAME')} <span className="text-red-500">*</span>
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className={cn('h-9 border border-gray-300', {
-                      'border-red-500 focus:outline-red-500': fieldState.invalid,
-                    })}
-                    placeholder={t('FORM.NAME')}
-                    {...formField}
-                  />
-                </FormControl>
-                <FormMessage>
-                  {fieldState.error?.message ? t(fieldState.error.message) : ''}
-                </FormMessage>
-              </FormItem>
-            </CardContent>
+          render={({ field }) => (
+            <FormItem className="mt-4 mx-6">
+              <FormLabel className="text-lg font-semibold">{t('ROLE_FORM.LABEL.NAME')}</FormLabel>
+              <FormControl>
+                <Input placeholder={t('ROLE_FORM.PLACEHOLDER.NAME')} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
 
         {/* Permissions Field */}
         <CardContent className="mt-4 mx-6 p-4 border border-gray-200 rounded-lg space-y-0">
-          <FormLabel className="text-lg font-semibold">{t('LABEL.PERMISSIONS')}</FormLabel>
-          <Table className="w-full">
-            <TableHeader>
-              <TableRow className="border-none">
-                <TableCell className="w-1/6 font-poppins font-medium text-base leading-6 tracking-normal">
-                  {t('LABEL.FEATURES')}
-                </TableCell>
-                <TableCell className="font-poppins font-medium text-base leading-6 tracking-normal" colSpan={5}>
-                  {t('LABEL.PERMISSIONS')}
-                </TableCell>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {permissions.map((permission) => (
-                <TableRow key={permission.id} className="border-none hover:bg-transparent">
-                  <TableCell className="font-poppins font-normal text-base leading-6 tracking-normal">
-                    {permission.feature}
-                  </TableCell>
-                  {permission.permissions.map((perm) => (
-                    <TableCell key={perm.id} className="w-1/6">
-                      <FormField
-                        control={form.control}
-                        name={`${permission.id}_${perm.id}`}
-                        render={({ field }) => (
-                          <Label className="flex items-center cursor-pointer w-3/8">
-                            <Checkbox
-                              checked={!!field.value}
-                              name={`${permission.id}_${perm.id}`}
-                              onCheckedChange={(checked) => field.onChange(checked)}
-                              className="text-[#E64560] border-[#E64560] border-2 rounded cursor-pointer focus:ring-[#E64560] w-5 h-5
-                              data-[state=checked]:bg-[#E64560] data-[state=checked]:border-[#E64560] focus-visible:ring-[#E64560]"
-                            />
-                            <span key={`${permission.id}_${perm.id}`} className="text-sm text-gray-700 pl-2">
-                              {perm.name}
-                            </span>
-                          </Label>
-                        )}
-                      />
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <FormLabel className="text-lg font-semibold">{t('ROLE_FORM.LABEL.PERMISSIONS')}</FormLabel>
+          <PermissionsTable
+            availablePermissions={availablePermissions} // Pass available permissions to the table
+            formControl={form.control}
+            t={t}
+          />
         </CardContent>
       </form>
     </Form>

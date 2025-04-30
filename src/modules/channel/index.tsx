@@ -1,6 +1,5 @@
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Loader from '@/components/common/loader';
 import { Suspense, lazy, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/use-rtk-hooks';
 import { RootState } from '@/store';
@@ -11,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import FilterPopOver from './components/FilterPopOver';
 import { AddIcon, SearchIcon } from '@/components/common/icon';
+import { IconLoader } from '@tabler/icons-react';
 
 const ActiveTab = lazy(() => import('./components/active-tab'));
 const InactiveTab = lazy(() => import('./components/inactive-tab'));
@@ -88,12 +88,20 @@ function ChannelPage() {
           </Button>
         </div>
         <TabsContent value={CHANNEL_TABS.ACTIVE}>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={
+            <div className="flex justify-center items-center h-[200px]">
+              <IconLoader className="h-6 w-6 animate-spin text-[#e64560]" />
+            </div>
+            }>
             <ActiveTab filterValue={channelValues.filterValue} searchValue={channelValues.searchValue} />
           </Suspense>
         </TabsContent>
         <TabsContent value={CHANNEL_TABS.INACTIVE}>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={
+              <div className="flex justify-center items-center h-[200px]">
+                <IconLoader className="h-6 w-6 animate-spin text-[#e64560]" />
+              </div>
+            }>
             <InactiveTab filterValue={channelValues.filterValue} searchValue={channelValues.searchValue} />
           </Suspense>
         </TabsContent>

@@ -23,9 +23,18 @@ const rolesApi = baseApi.injectEndpoints({
     }),
     getRoleById: builder.query({
       query: (id) => ({
-        url: `roles/permissions/${id}`,
+        url: `roles/${id}`,
         method: 'GET',
       }),
+      providesTags: ['ROLES'],
+    }),
+    getPermissionById: builder.query({
+      query: (id) => {
+        console.log('==========================33', id);
+        return ({
+        url: `roles/permissions/${id}`,
+        method: 'GET',
+      })},
       providesTags: ['ROLES'],
     }),
     createRole: builder.mutation({
@@ -53,8 +62,8 @@ const rolesApi = baseApi.injectEndpoints({
     }),
     copyRole: builder.mutation({
       query: (id) => ({
-        url: `roles/copy/${id}`,
-        method: 'PUT',
+        url: `roles/copy-role/${id}`,
+        method: 'GET',
       }),
       invalidatesTags: ['ROLES'],
     }),
@@ -62,9 +71,10 @@ const rolesApi = baseApi.injectEndpoints({
 });
  
 export const {
-  useGetRolesQuery,
+  useGetRolesQuery,  
   useFetchPermissionsQuery,
   useGetRoleByIdQuery,
+  useGetPermissionByIdQuery,
   useCreateRoleMutation,
   useUpdateRoleMutation,
   useDeleteRoleMutation,

@@ -27,6 +27,8 @@ const buttonVariants = cva(
         action: "rounded-full",
         icon: "bg-transparent text-primary",
         custom: "bg-[#e64560] text-white shadow-xs hover:bg-[#e64560]/90 shadow",
+        sidebar_active: "text-[#e64560]",
+        sidebar: "text-[#475569] hover:text-[#e64560]",
       },
       size: {
         default: "h-9 px-4 py-2",

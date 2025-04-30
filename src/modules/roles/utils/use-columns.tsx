@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
  
 export default function useColumns(
     handleOpenDeleteModal: (id: string) => void,
+    handleOpenCopyModal: (id: string) => void,
 ) {
     const navigate = useNavigate();
 
@@ -110,7 +111,9 @@ export default function useColumns(
                         variant="action"
                         className="text-red-500 bg-red-500/10 hover:bg-red-500/30 cursor-pointer"
                         title="Copy"
-                        
+                        onClick={() =>
+                            handleOpenCopyModal(row?.original?.id ?? '')
+                        }
                     >
                         <CopyIcon size={15} />
                     </Button>                

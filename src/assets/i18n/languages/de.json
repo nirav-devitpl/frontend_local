@@ -27,9 +27,7 @@
   },
   "LABEL": {
     "CHANNEL_TYPE": "Kanaltyp",
-    "ROLE_TYPE": "Rollenart",
-    "PERMISSIONS": "Berechtigungen",
-    "FEATURES": "Funktionen"
+    "ROLE_TYPE": "Rollenart"
   },
   "FILTER": {
     "INBOUND": "Eingehende",
@@ -56,11 +54,14 @@
     "ACTIVATE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal aktivieren möchten?",
     "DELETE_CONFIRMATION": "Sind Sie sicher, dass Sie diesen Kanal löschen möchten?",
     "DELETE_CONFIRMATION_ROLE": "Sind Sie sicher, dass Sie diese Rolle löschen möchten?",
+    "COPY_CONFIRMATION_ROLE": "Sind Sie sicher, dass Sie diese Rolle kopieren möchten?",
     "CONFIRM": "Bestätigen",
     "CANCEL": "Abbrechen",
     "CONFIRM_DEACTIVATE": "Ja, Deaktivieren",
     "CONFIRM_ACTIVATE": "Ja, Aktivieren",
     "CONFIRM_DELETE": "Ja, Löschen",
+    "CONFIRM_COPY": "Ja, Kopieren",
+    "CONFIRM_SIGNOUT": "Ja, Abmelden",
     "CONFIRM_PASSWORD_CHANGE": "Ja, Passwort ändern"
   },
   "TABLE": {
@@ -181,5 +182,30 @@
     "WEAK_PASSWORD": "Schlechtes Ergebnis! Ihr Passwort ist schwach.",
     "MEDIUM_PASSWORD": "Nicht schlecht, aber es könnte besser sein! Ihr Passwort ist durchschnittlich.",
     "STRONG_PASSWORD": "Großartig! Ihr Passwort ist stark."
+  },
+  "ROLE_FORM": {
+    "TITLE": "Reset your Password",
+    "DESCRIPTION": "Please enter your new password",
+    "PLACEHOLDER": {
+      "NAME": "Name"
+    },
+    "LABEL": {
+      "NAME": "Name",
+      "PERMISSIONS": "Berechtigungen",
+      "FEATURES": "Funktionen"
+    },
+    "BUTTONS": {
+      "ADD_ROLE": "Neue Rolle hinzufügen",
+      "EDIT_ROLE": "Rolle bearbeiten"
+    },
+    "VALIDATION": {
+      "NAME_REQUIRED": "Name is required."
+    },
+    "ERRORS": {
+      "ERROR_MESSAGE": "Something went wrong. Please try again."
+    },
+    "SUCCESS": {
+      "SUCCESS_MESSAGE": "Password reset successfully!"
+    }
   }
 }
